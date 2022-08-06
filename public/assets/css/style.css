@@ -551,9 +551,9 @@ ol {
   Hero
 -----------------------*/
 
-.hero {
+/* .hero {
 	padding-bottom: 50px;
-}
+} */
 
 .hero.hero-normal {
 	padding-bottom: 30px;
@@ -608,9 +608,13 @@ ol {
 
 .hero__categories ul {
 	border: 1px solid #ebebeb;
-	padding-left: 40px;
-	padding-top: 10px;
-	padding-bottom: 12px;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    position: absolute;
+    z-index: 1;
+    background: #ffff;
+    width: 90%;
 }
 
 .hero__categories ul li {

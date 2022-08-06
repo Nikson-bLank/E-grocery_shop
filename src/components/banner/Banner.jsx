@@ -2,8 +2,8 @@ import React from 'react'
 
 // Image import
 
-import banner_1 from "../../images/banner/banner-1"
-import banner_2 from "../../images/banner/banner-2"
+import banner_1 from "../../images/banner/banner-1.jpg"
+import banner_2 from "../../images/banner/banner-2.jpg"
 
 const Banner = () => {
   return (

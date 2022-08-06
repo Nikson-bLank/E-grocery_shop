@@ -10,7 +10,7 @@ const SingleFeaturedProduct = (props) => {
         <div className="featured__item__pic set-bg" data-setbg={image}>
             <ul className="featured__item__pic__hover">
                 <li><a href="#"><i className="fa fa-heart"></i></a></li>
-                <li><a href="#"><i className="fa fa-retweet"></i></a></li>
+                {/* <li><a href="#"><i className="fa fa-retweet"></i></a></li> */}
                 <li><a href="#"><i className="fa fa-shopping-cart"></i></a></li>
             </ul>
         </div>

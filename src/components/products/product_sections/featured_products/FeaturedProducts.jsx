@@ -2,14 +2,14 @@
 import React from "react";
 
 //images import
-import feat_1 from "../../../images/featured/feature-1.jpg";
-import feat_2 from "../../../images/featured/feature-2.jpg";
-import feat_3 from "../../../images/featured/feature-3.jpg";
-import feat_4 from "../../../images/featured/feature-4.jpg";
-import feat_5 from "../../../images/featured/feature-5.jpg";
-import feat_6 from "../../../images/featured/feature-6.jpg";
-import feat_7 from "../../../images/featured/feature-7.jpg";
-import feat_8 from "../../../images/featured/feature-8.jpg";
+import feat_1 from "../../../../images/featured/feature-1.jpg";
+import feat_2 from "../../../../images/featured/feature-2.jpg";
+import feat_3 from "../../../../images/featured/feature-3.jpg";
+import feat_4 from "../../../../images/featured/feature-4.jpg";
+import feat_5 from "../../../../images/featured/feature-5.jpg";
+import feat_6 from "../../../../images/featured/feature-6.jpg";
+import feat_7 from "../../../../images/featured/feature-7.jpg";
+import feat_8 from "../../../../images/featured/feature-8.jpg";
 
 //component import
 import SingleFeaturedProduct from "./SingleFeaturedProduct";

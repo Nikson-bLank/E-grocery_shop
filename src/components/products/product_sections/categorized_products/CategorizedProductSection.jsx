@@ -1,12 +1,12 @@
 import React from "react";
-import ProductSection from "./product_section/ProductSection";
+import ProductSectionCategory from "./categorized_product_section/ProductSectionCategory";
 
 //image imports
 
 
-import latest_product_1 from "../../../images/latest-product/lp-1.jpg";
-import latest_product_2 from "../../../images/latest-product/lp-2.jpg";
-import latest_product_3 from "../../../images/latest-product/lp-3.jpg";
+import latest_product_1 from "../../../../images/latest-product/lp-1.jpg";
+import latest_product_2 from "../../../../images/latest-product/lp-2.jpg";
+import latest_product_3 from "../../../../images/latest-product/lp-3.jpg";
 
 const latestProducts = [
   {
@@ -83,12 +83,13 @@ const LatestProducts = () => {
     <section className="latest-product spad">
       <div className="container">
         <div className="row">
-          <ProductSection heading="Latest Products" slide_products={latestProducts} />
-          <ProductSection heading="Top Rated Products" slide_products={latestProducts} />
-          <ProductSection heading="Review Products" slide_products={latestProducts} />
+          <ProductSectionCategory heading="Latest Products" slide_products={latestProducts} />
+          <ProductSectionCategory heading="Top Rated Products" slide_products={TopRatedProducts} />
+          <ProductSectionCategory heading="Review Products" slide_products={ReviewProducts} />
         </div>
       </div>
     </section>
+    
   );
 };
 

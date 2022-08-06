@@ -21,7 +21,7 @@ const SingleProductSlider = ({ products }) => {
   );
 };
 
-const SingleProductSection = ({products}) => {
+const SingleProductSectionCategory = ({products}) => {
   return (
     <div className="latest-product__slider owl-carousel">
       <SingleProductSlider products={products} />
@@ -29,4 +29,4 @@ const SingleProductSection = ({products}) => {
   );
 };
 
-export default SingleProductSection;
+export default SingleProductSectionCategory;

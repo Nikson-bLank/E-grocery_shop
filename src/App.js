@@ -6,6 +6,7 @@ import Header from "./components/common/Header";
 import MobileNavbar from "./components/common/navbar/MobileNavbar";
 import Navbar from "./components/common/navbar/Navbar";
 import Home from "./pages/Home";
+import ProductList from "./pages/Products/ProductList";
 
 const App = () => {
   const navigate = useNavigate();
@@ -14,9 +15,10 @@ const App = () => {
     <div className="MainDiv">
       <Header />
       <Navbar />
-      <MobileNavbar/>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductList />} />
+
         {/* <Route
           path="*"
           element={
