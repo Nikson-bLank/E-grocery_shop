@@ -1,40 +1,25 @@
-import React from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
-
+import { ChakraProvider, Box, Flex } from "@chakra-ui/react";
+import { Route, Routes } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import Header from "./components/common/Header";
-import MobileNavbar from "./components/common/navbar/MobileNavbar";
 import Navbar from "./components/common/navbar/Navbar";
-import Home from "./pages/Home";
-import ProductList from "./pages/Products/ProductList";
+import PageRoute from "./routes/PageRoute";
 
-const App = () => {
-  const navigate = useNavigate();
-
+function App() {
   return (
-    <div className="MainDiv">
+    <ChakraProvider>
+      <Flex direction="column">
       <Header />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductList />} />
-
-        {/* <Route
-          path="*"
-          element={
-            <h2 className="text-center">
-              Oops! No page found
-              <br />
-              <button className="site-btn" onClick={() => navigate("/")}>
-                Go back to Homepage
-              </button>
-            </h2>
-          }
-        ></Route> */}
-      </Routes>
+      <Box w={{ base: "95%", xl: "80%" }} mx="auto" mb="10">
+        <Box>
+          <Navbar />
+        </Box>
+      <PageRoute />
+      </Box>
       <Footer />
-    </div>
+      </Flex>
+    </ChakraProvider>
   );
-};
+}
 
 export default App;

@@ -1,75 +1,202 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+import {
+  Box,
+  chakra,
+  Link,
+  Stack,
+  Text,
+  VisuallyHidden,
+  Input,
+  useColorModeValue,
+  Divider,
+  List,
+  ListItem,
+  Flex,
+  Button,
+  Image,
+} from "@chakra-ui/react";
+import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { BiMailSend } from "react-icons/bi";
+import { payment_methods } from "../../images/IMAGE_IMPORTS";
 
-import payment_logo from "../../images/payment-item.png"
-
-const Footer = () => {
+const ListHeader = ({ children }) => {
   return (
-    <footer className="footer spad">
-    <div className="container">
-        <div className="row">
-            <div className="col-lg-3 col-md-6 col-sm-6">
-                <div className="footer__about">
-                    <div className="footer__about__logo">
-                        <a href="#" className="logo">V-Shop</a>
-                    </div>
-                    <ul>
-                        <li>Address: Ludhiana</li>
-                        <li>Phone: 1234567890</li>
-                        <li>Email: therichposts@gmail.com</li>
-                    </ul>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                <div className="footer__widget">
-                    <h6>Useful Links</h6>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">About Our Shop</a></li>
-                        <li><a href="#">Secure Shopping</a></li>
-                        <li><a href="#">Delivery infomation</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Our Sitemap</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">Who We Are</a></li>
-                        <li><a href="#">Our Services</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Innovation</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-12">
-                <div className="footer__widget">
-                    <h6>Join Our Newsletter Now</h6>
-                    <p>Get E-mail updates about our latest shop and special offers.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Enter your mail" />
-                        <button type="submit" className="site-btn">Subscribe</button>
-                    </form>
-                    <div className="footer__widget__social">
-                        <a href="#"><i className="fa fa-facebook"></i></a>
-                        <a href="#"><i className="fa fa-instagram"></i></a>
-                        <a href="#"><i className="fa fa-twitter"></i></a>
-                        <a href="#"><i className="fa fa-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div className="row">
-            <div className="col-lg-12">
-                <div className="footer__copyright">
-                    <div className="footer__copyright__text"><p>
-Copyright &copy;2021 All rights reserved | This template is made with <i className="fa fa-heart" aria-hidden="true"></i> by <a href="#" target="_blank">Jassa</a>
-</p></div>
-                    <div className="footer__copyright__payment"><img src={payment_logo} alt="" /></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-  )
-}
+    <Text fontWeight={"700"} fontSize={"16px"}>
+      {children}
+    </Text>
+  );
+};
 
-export default Footer
+const SocialButton = ({ children, label, href }) => {
+  return (
+    <chakra.button
+      bg={"#fff"}
+      rounded={"full"}
+      w={12}
+      h={12}
+      cursor={"pointer"}
+      as={"a"}
+      href={href}
+      display={"inline-flex"}
+      alignItems={"center"}
+      justifyContent={"center"}
+      transition={"all 0.3s ease"}
+      _hover={{
+        bg: "#7fad39",
+        color: "#fff",
+      }}
+    >
+      <VisuallyHidden>{label}</VisuallyHidden>
+      {children}
+    </chakra.button>
+  );
+};
+
+const FOOT_LINKS_1 = [
+  { id: 1, label: "About Us", link: "#" },
+  { id: 2, label: "About Our Shop", link: "#" },
+  { id: 3, label: "Secure Shopping", link: "#" },
+  { id: 4, label: "Delivery infomation", link: "#" },
+  { id: 5, label: "Privacy Policy", link: "#" },
+  { id: 6, label: "Our Sitemap", link: "#" },
+];
+const FOOT_LINKS_2 = [
+  { id: 1, label: "Who We Are", link: "#" },
+  { id: 2, label: "Our Services", link: "#" },
+  { id: 3, label: "Projects", link: "#" },
+  { id: 4, label: "Contact", link: "#" },
+  { id: 5, label: "Innovation", link: "#" },
+  { id: 6, label: "Testimonials", link: "#" },
+];
+
+export default function Footer() {
+  return (
+    <Box
+      bg={"#F3F6FA"}
+      w="100%"
+      color={"#1c1c1c"}
+      display="flex"
+      margin="auto"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      paddingTop={"70px"}
+    >
+      <Box
+        w={{ base: "95%", xl: "80%" }}
+        display="flex"
+        my={10}
+        gap={10}
+        // flexDirection={{ base: "column", md: "row" }}
+        flexWrap="wrap"
+        justifyContent="space-between"
+      >
+        <Box>
+          <Box>
+            <Text
+              textAlign="left"
+              fontSize="32px"
+              fontWeight={500}
+              color="black"
+            >
+              Grocery
+            </Text>
+          </Box>
+          <Box></Box>
+        </Box>
+        <Box>
+          <Box mb={3}>
+            <ListHeader children={"Useful Links"} />
+          </Box>
+          <Flex gap={20}>
+            <List>
+              {FOOT_LINKS_1.map((footLink) => (
+                <ListItem mb={2} key={footLink.id}>
+                  <Link
+                    _hover={{
+                      textDecoration: "none",
+                    }}
+                    href={footLink.link}
+                  >
+                    {footLink.label}
+                  </Link>
+                </ListItem>
+              ))}
+            </List>
+            <List>
+              {FOOT_LINKS_2.map((footLink) => (
+                <ListItem mb={2} key={footLink.id}>
+                  <Link
+                    _hover={{
+                      textDecoration: "none",
+                    }}
+                    href={footLink.link}
+                  >
+                    {footLink.label}
+                  </Link>
+                </ListItem>
+              ))}
+            </List>
+          </Flex>
+        </Box>
+        <Box>
+          <Box mb={3}>
+            <ListHeader children={"Join Our Newsletter Now"} />
+          </Box>
+          <Box>
+            <Text fontSize="sm">
+              Get E-mail updates about our latest shop and special offers.
+            </Text>
+            <Stack direction={"row"} my={10}>
+              <Input
+                placeholder={"Your email address"}
+                bg={"#fff"}
+                border={0}
+                borderRadius={0}
+                p={4}
+                _focus={{
+                  bg: "#fff",
+                }}
+              />
+              <Button
+                bg={"#7fad39"}
+                color={useColorModeValue("white", "gray.800")}
+                aria-label="Subscribe"
+                borderRadius={0}
+                fontWeight={800}
+                px={"26px"}
+              >
+                SUBSCRIBE
+              </Button>
+            </Stack>
+            <Stack direction={"row"} spacing={6}>
+              <SocialButton label={"Twitter"} href={"#"}>
+                <FaTwitter />
+              </SocialButton>
+              <SocialButton label={"YouTube"} href={"#"}>
+                <FaYoutube />
+              </SocialButton>
+              <SocialButton label={"Instagram"} href={"#"}>
+                <FaInstagram />
+              </SocialButton>
+            </Stack>
+          </Box>
+        </Box>
+      </Box>
+      <Box w={{ base: "95%", xl: "80%" }}>
+        <Divider margin="auto" />
+        <Flex
+          padding={"15px 0px"}
+          flexDirection={{ base: "column", xl: "row" }}
+          justify="space-between"
+        >
+          <Box>
+            Copyright ©2021 All rights reserved | This template is inspired by Jassa 
+          </Box>
+          <Box>
+            <Image src={payment_methods} alt="Payment methods" />
+          </Box>
+        </Flex>
+      </Box>
+    </Box>
+  );
+}
