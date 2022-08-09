@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom"
 
 import Home from "../pages/Home"
 import ProductDetails from "../pages/products/ProductDetails"
-import Products from "../pages/products/ProductDetails"
+import Products from "../pages/products/Products"
 
 
 const PageRoute = () => {

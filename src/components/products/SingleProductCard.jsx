@@ -8,10 +8,12 @@ import {
   HStack,
   Text,
   VStack,
+  Center,
+  Divider,
 } from "@chakra-ui/react";
 
 import { FaHeart, FaShoppingCart, FaStarHalfAlt, FaStar } from "react-icons/fa";
-import { useNavigate,   Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function SingleProductCard({ ...productData }) {
   const navigate = useNavigate();
@@ -24,17 +26,16 @@ function SingleProductCard({ ...productData }) {
       _hover={{
         shadow: "lg",
       }}
-     
       shadow="xs"
       position="relative"
-      w={{ base: "90%", sm: "inherit" }}
+     
     >
       {productData.isNew && (
         <Badge
           rounded="full"
           px="2"
           fontSize="0.8em"
-          colorScheme="red"
+          colorScheme="green"
           size="10px"
           position="absolute"
           top={2}
@@ -47,23 +48,37 @@ function SingleProductCard({ ...productData }) {
       <Image
         src={productData.imageURL}
         alt={`Picture of ${productData.name}`}
-        h={150}
+        maxH={200}
         w="100%"
         objectFit="cover"
         roundedTop="lg"
-        onClick={()=>{navigate(`/product/${productData.name}`)}}
+        onClick={() => {
+          navigate(`/product/${productData.name}`);
+        }}
         cursor="pointer"
       />
 
-      <Box p="4">
-        <Flex
-          mt="1"
-          justifyContent="space-between"
-          alignContent="center"
-          gap={3}
-        >
-          <Box>
-            <Link to={`/product/${productData.name}`}><Text  cursor="pointer">{productData.name}</Text></Link>
+      <Flex direction="row" gap={2} p={3} w="100%" m="auto">
+        <Flex direction="column" gap={1}>
+          <Link to={`/product/${productData.name}`}>
+            <Text fontSize="lg" fontWeight="500" cursor="pointer">{productData.name.substring(0, 20)}</Text>
+          </Link>
+          <HStack>
+            <Icon as={FaStar} h={3} w={3}></Icon>
+            <Icon as={FaStar} h={3} w={3}></Icon>
+            <Icon as={FaStar} h={3} w={3}></Icon>
+            <Icon as={FaStarHalfAlt} h={3} w={3}></Icon>
+          </HStack>
+        </Flex>
+        <Center h={"auto"}>
+          <Divider orientation="vertical"></Divider>
+        </Center>
+        <Flex  direction="column" gap={1}>
+          <Box fontSize="xl" color={"#1c1c1c"} fontWeight={600}>
+            <Box as="span" color={"#1c1c1c"} fontSize="md">
+              ₹
+            </Box>
+            {productData.price.toFixed(2)}
           </Box>
           <Flex direction="row" gap={2}>
             <Tooltip
@@ -74,7 +89,7 @@ function SingleProductCard({ ...productData }) {
               fontSize={"1em"}
             >
               <Link to={"#"} display={"flex"}>
-                <Icon as={FaHeart} h={3} w={3} alignSelf={"center"} />
+                <Icon as={FaHeart} h={4} w={4} alignSelf={"center"} />
               </Link>
             </Tooltip>
             <Tooltip
@@ -85,31 +100,12 @@ function SingleProductCard({ ...productData }) {
               fontSize={"1em"}
             >
               <Link to={"#"} display={"flex"}>
-                <Icon as={FaShoppingCart} h={3} w={3} alignSelf={"center"} />
+                <Icon as={FaShoppingCart} h={4} w={4} alignSelf={"center"} />
               </Link>
             </Tooltip>
           </Flex>
         </Flex>
-
-        <Flex
-          justifyContent="space-between"
-          alignContent="center"
-          direction={"row"}
-        >
-          <HStack>
-            <Icon as={FaStar} h={4} w={4}></Icon>
-            <Icon as={FaStar} h={4} w={4}></Icon>
-            <Icon as={FaStar} h={4} w={4}></Icon>
-            <Icon as={FaStarHalfAlt} h={4} w={4}></Icon>
-          </HStack>
-          <Box fontSize="lg" color={"#1c1c1c"}>
-            <Box as="span" color={"#1c1c1c"} fontSize="lg">
-              ₹
-            </Box>
-            {productData.price.toFixed(2)}
-          </Box>
-        </Flex>
-      </Box>
+      </Flex>
     </Box>
   );
 }

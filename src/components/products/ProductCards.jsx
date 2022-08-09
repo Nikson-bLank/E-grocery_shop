@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Grid, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
 import SingleProductCard from "./SingleProductCard";
 
@@ -77,17 +77,31 @@ const productsData = [
     rating: 4.2,
     numReviews: 34,
   },
+  {
+    isNew: false,
+    imageURL: product_8,
+    name: "Wayfarer Classicsdsdhfjs sdfhsjdf sdfhsdjf",
+    price: 4.5,
+    rating: 4.2,
+    numReviews: 34,
+  },
 ];
 
 const ProductCards = () => {
   return (
-    <Flex shrink="1" justify="space-between" w="100%">
-      <Box width={"40%"}>Filters</Box>
-      <Flex grow="1" direction="row" wrap="wrap" gap={5} justify="center">
+    <Flex w={"100%"}>
+      <Box>filter</Box>
+      <SimpleGrid
+        columns={[1, 2, 3, 4, 5]}
+        w="100%"
+        placeItems="center"
+        spacingX="10px"
+        spacingY="20px"
+      >
         {productsData.map((productData) => (
           <SingleProductCard {...productData} />
         ))}
-      </Flex>
+      </SimpleGrid>
     </Flex>
   );
 };

@@ -15,7 +15,6 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-import { BiMailSend } from "react-icons/bi";
 import { payment_methods } from "../../images/IMAGE_IMPORTS";
 
 const ListHeader = ({ children }) => {
