@@ -7,7 +7,6 @@ import {
   Tooltip,
   HStack,
   Text,
-  VStack,
   Center,
   Divider,
 } from "@chakra-ui/react";
@@ -28,7 +27,6 @@ function SingleProductCard({ ...productData }) {
       }}
       shadow="xs"
       position="relative"
-     
     >
       {productData.isNew && (
         <Badge
@@ -44,7 +42,6 @@ function SingleProductCard({ ...productData }) {
           New
         </Badge>
       )}
-
       <Image
         src={productData.imageURL}
         alt={`Picture of ${productData.name}`}
@@ -61,7 +58,9 @@ function SingleProductCard({ ...productData }) {
       <Flex direction="row" gap={2} p={3} w="100%" m="auto">
         <Flex direction="column" gap={1}>
           <Link to={`/product/${productData.name}`}>
-            <Text fontSize="lg" fontWeight="500" cursor="pointer">{productData.name.substring(0, 20)}</Text>
+            <Text fontSize="lg" fontWeight="500" cursor="pointer">
+              {productData.name.substring(0, 20)}
+            </Text>
           </Link>
           <HStack>
             <Icon as={FaStar} h={3} w={3}></Icon>
@@ -73,7 +72,7 @@ function SingleProductCard({ ...productData }) {
         <Center h={"auto"}>
           <Divider orientation="vertical"></Divider>
         </Center>
-        <Flex  direction="column" gap={1}>
+        <Flex direction="column" gap={1}>
           <Box fontSize="xl" color={"#1c1c1c"} fontWeight={600}>
             <Box as="span" color={"#1c1c1c"} fontSize="md">
               ₹

@@ -80,29 +80,32 @@ const productsData = [
   {
     isNew: false,
     imageURL: product_8,
-    name: "Wayfarer Classicsdsdhfjs sdfhsjdf sdfhsdjf",
+    name: "Wayfarer Classics",
     price: 4.5,
     rating: 4.2,
     numReviews: 34,
   },
 ];
 
-const ProductCards = () => {
+const ProductCards = ({only2}) => {
+
+ 
   return (
-    <Flex w={"100%"}>
-      <Box>filter</Box>
+  
       <SimpleGrid
-        columns={[1, 2, 3, 4, 5]}
+        columns={[1, 2, 3, 4, null]}
         w="100%"
         placeItems="center"
         spacingX="10px"
         spacingY="20px"
       >
-        {productsData.map((productData) => (
-          <SingleProductCard {...productData} />
+        {only2 ? productsData.slice(0,2).map((productData, idx) => (
+          <SingleProductCard key={idx} {...productData} />
+        )) :productsData.map((productData, idx) => (
+          <SingleProductCard key={idx} {...productData} />
         ))}
       </SimpleGrid>
-    </Flex>
+
   );
 };
 
