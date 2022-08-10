@@ -21,7 +21,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FaHeart, FaShoppingCart, FaChevronDown, FaUser } from "react-icons/fa";
-
+import { Link as ReactRouterLink } from "react-router-dom";
 import { NAV_ITEMS } from "./navitem";
 
 const MobileNavbar = ({ onClose, isOpen }) => {
@@ -81,8 +81,9 @@ const MobileNavbar = ({ onClose, isOpen }) => {
               return (
                 <Box key={navItem.label}>
                   <Link
+                    as={ReactRouterLink}
                     onClick={onClose}
-                    href={navItem.href ?? "#"}
+                    to={navItem.href ?? "#"}
                     fontWeight={600}
                     color={"#1c1c1c"}
                     _hover={{

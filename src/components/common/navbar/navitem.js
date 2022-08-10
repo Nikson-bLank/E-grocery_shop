@@ -1,11 +1,11 @@
 export const NAV_ITEMS = [
     {
       label: "Home",
-      href: "#",
+      href: "/",
     },
     {
-      label: "Shop",
-      href: "#",
+      label: "Products",
+      href: "/products",
     },
     {
       label: "Pages",

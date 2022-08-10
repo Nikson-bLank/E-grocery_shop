@@ -11,7 +11,7 @@ const PageRoute = () => {
         <Route path="/" element={<Home />}></Route>
         <Route path="/products" element={<Products/>}></Route>
         <Route path="/product/:id" element={<ProductDetails/>}></Route>
-        
+
     </Routes>
   )
 }
