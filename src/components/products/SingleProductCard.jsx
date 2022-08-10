@@ -20,10 +20,8 @@ function SingleProductCard({ ...productData }) {
   return (
     <Box
       bg={"#fff"}
-      borderWidth="1px"
-      rounded="lg"
       _hover={{
-        shadow: "lg",
+        shadow: "xl",
       }}
       shadow="xs"
       position="relative"
@@ -47,19 +45,17 @@ function SingleProductCard({ ...productData }) {
         alt={`Picture of ${productData.name}`}
         maxH={200}
         w="100%"
-        objectFit="cover"
-        roundedTop="lg"
         onClick={() => {
           navigate(`/product/${productData.name}`);
         }}
         cursor="pointer"
       />
 
-      <Flex direction="row" gap={2} p={3} w="100%" m="auto">
+      <Flex direction="row" gap={2} p={3} justify="space-between">
         <Flex direction="column" gap={1}>
           <Link to={`/product/${productData.name}`}>
             <Text fontSize="lg" fontWeight="500" cursor="pointer">
-              {productData.name.substring(0, 20)}
+              {productData.name}
             </Text>
           </Link>
           <HStack>

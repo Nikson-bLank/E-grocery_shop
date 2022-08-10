@@ -87,25 +87,24 @@ const productsData = [
   },
 ];
 
-const ProductCards = ({only2}) => {
-
- 
+const ProductCards = ({ only2 }) => {
   return (
-  
-      <SimpleGrid
-        columns={[1, 2, 3, 4, null]}
-        w="100%"
-        placeItems="center"
-        spacingX="10px"
-        spacingY="20px"
-      >
-        {only2 ? productsData.slice(0,2).map((productData, idx) => (
-          <SingleProductCard key={idx} {...productData} />
-        )) :productsData.map((productData, idx) => (
-          <SingleProductCard key={idx} {...productData} />
-        ))}
-      </SimpleGrid>
-
+    <SimpleGrid
+      columns={[1, 2, 3, 4]}
+      placeItems="center"
+      spacingX="10px"
+      spacingY="20px"
+    >
+      {only2
+        ? productsData
+            .slice(0, 2)
+            .map((productData, idx) => (
+              <SingleProductCard key={idx} {...productData} />
+            ))
+        : productsData.map((productData, idx) => (
+            <SingleProductCard key={idx} {...productData} />
+          ))}
+    </SimpleGrid>
   );
 };
 

@@ -1,6 +1,7 @@
 import {
   Box,
   Center,
+  Container,
   Divider,
   Flex,
   HStack,
@@ -40,8 +41,8 @@ const Header = () => {
       justifyContent="center"
       padding="10px 0px 13px"
     >
-      <Box
-        w="80%"
+      <Container
+        maxW="6xl"
         display="flex"
         margin="auto"
         flexDirection="row"
@@ -104,7 +105,7 @@ const Header = () => {
             </Link>
           </HStack>
         </Flex>
-      </Box>
+      </Container>
     </Box>
   );
 };

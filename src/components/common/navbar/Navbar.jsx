@@ -1,46 +1,61 @@
 import {
-  Box,
   Flex,
   Text,
   IconButton,
   Stack,
   Icon,
   useDisclosure,
+  Container,
+  useMediaQuery,
 } from "@chakra-ui/react";
 
-import { FaBars, FaHeart, FaShoppingCart } from "react-icons/fa";
+import {
+  FaBars,
+  FaHeart,
+  FaShoppingCart,
+  FaShoppingBasket,
+} from "react-icons/fa";
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
 
   return (
-    <Box>
+    <Container maxW={{ base: "9xl", xl: "6xl" }}>
       <Flex
         py={{ base: "24px" }}
         align={"center"}
         justifyContent="space-between"
       >
         <Flex flex={{ base: 1 }} justify="start">
-          <Text textAlign="left" fontSize="32px" fontWeight={500} color="black">
-            Grocery
-          </Text>
+          {isLargerThan480 ? (
+            <Text
+              textAlign="left"
+              fontSize="32px"
+              fontWeight={500}
+              color="black"
+            >
+              Grocery
+            </Text>
+          ) : (
+            <Icon as={FaShoppingBasket} h={7} w={7}></Icon>
+          )}
 
           <Flex
             flexGrow={1}
             display={{ base: "none", xl: "flex" }}
             align="center"
             justify="center"
-            
           >
             <DesktopNavbar />
           </Flex>
         </Flex>
         <Stack
-          justify={"flex-end"}
+          justify={"center"}
           direction={"row"}
-          spacing={6}
+          spacing={{ base: 3, sm: 6 }}
           align="center"
         >
           <Icon as={FaHeart} h={5} w={5}></Icon>
@@ -50,7 +65,7 @@ export default function Navbar() {
               Item:
             </Text>
             <Text fontSize="sm" fontWeight={700}>
-            ₹1550
+              ₹1550
             </Text>
           </Stack>
         </Stack>
@@ -67,10 +82,6 @@ export default function Navbar() {
         </Flex>
       </Flex>
       <MobileNavbar isOpen={isOpen} onClose={onClose} />
-    </Box>
+    </Container>
   );
 }
-
-
-
-

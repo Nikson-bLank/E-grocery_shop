@@ -9,14 +9,10 @@ function App() {
   return (
     <ChakraProvider>
       <Flex direction="column">
-      <Header />
-      <Box w={{ base: "95%", xl: "80%" }} mx="auto" mb="10">
-        <Box>
-          <Navbar />
-        </Box>
-      <PageRoute />
-      </Box>
-      <Footer />
+        <Header />
+        <Navbar />
+        <PageRoute />
+        <Footer />
       </Flex>
     </ChakraProvider>
   );

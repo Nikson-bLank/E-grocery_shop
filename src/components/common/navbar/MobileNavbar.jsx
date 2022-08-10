@@ -1,6 +1,7 @@
 import {
   Box,
   Center,
+  CloseButton,
   Divider,
   Drawer,
   DrawerBody,
@@ -29,9 +30,17 @@ const MobileNavbar = ({ onClose, isOpen }) => {
       <DrawerOverlay />
       <DrawerContent>
         <DrawerHeader mt={10}>
-          <Text textAlign="left" fontSize="32px" fontWeight={500} color="black">
-            Grocery
-          </Text>
+          <HStack spacing={"70px"} alignItems={"center"}>
+            <Text
+              textAlign="left"
+              fontSize="32px"
+              fontWeight={500}
+              color="black"
+            >
+              Grocery
+            </Text>
+            <CloseButton size={"32px"} onClick={onClose} />
+          </HStack>
         </DrawerHeader>
         <DrawerBody>
           <Stack justify={"start"} direction={"row"} spacing={4} align="center">
@@ -72,7 +81,7 @@ const MobileNavbar = ({ onClose, isOpen }) => {
               return (
                 <Box key={navItem.label}>
                   <Link
-                  onClick={onClose}
+                    onClick={onClose}
                     href={navItem.href ?? "#"}
                     fontWeight={600}
                     color={"#1c1c1c"}
@@ -117,9 +126,7 @@ const MobileNavbar = ({ onClose, isOpen }) => {
             })}
           </Flex>
         </DrawerBody>
-        <DrawerFooter>
-
-        </DrawerFooter>
+        <DrawerFooter></DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

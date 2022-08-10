@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Container,
   Divider,
   Flex,
   Icon,
@@ -24,7 +25,7 @@ const ProductDetails = () => {
   //  console.log(param.id);
 
   return (
-    <Box>
+    <Container maxW={{ base: "9xl", xl: "6xl" }}>
       <SimpleGrid columns={[1, 1, 2]} w="100%">
         <Box borderWidth={"1px"}>
           <Image w="100%" h="500px" alt="product" src={feat_3}></Image>
@@ -42,11 +43,11 @@ const ProductDetails = () => {
           Similar Products
         </Text>
         <Divider />
-        <Box mt={5}>
-        <ProductCards only2 />
+        <Box my={5}>
+          <ProductCards only2 />
         </Box>
       </Box>
-    </Box>
+    </Container>
   );
 };
 
