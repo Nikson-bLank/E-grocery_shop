@@ -15,6 +15,9 @@ import {
   FaShoppingCart,
   FaShoppingBasket,
 } from "react-icons/fa";
+
+import { Link } from "react-router-dom";
+
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
 
@@ -30,19 +33,20 @@ export default function Navbar() {
         justifyContent="space-between"
       >
         <Flex flex={{ base: 1 }} justify="start">
-          {isLargerThan480 ? (
-            <Text
-              textAlign="left"
-              fontSize="32px"
-              fontWeight={500}
-              color="black"
-            >
-              Grocery
-            </Text>
-          ) : (
-            <Icon as={FaShoppingBasket} h={7} w={7}></Icon>
-          )}
-
+          <Link to="/">
+            {isLargerThan480 ? (
+              <Text
+                textAlign="left"
+                fontSize="32px"
+                fontWeight={500}
+                color="black"
+              >
+                Grocery
+              </Text>
+            ) : (
+              <Icon as={FaShoppingBasket} h={7} w={7}></Icon>
+            )}
+          </Link>
           <Flex
             flexGrow={1}
             display={{ base: "none", xl: "flex" }}

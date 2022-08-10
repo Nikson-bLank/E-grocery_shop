@@ -31,14 +31,20 @@ const MobileNavbar = ({ onClose, isOpen }) => {
       <DrawerContent>
         <DrawerHeader mt={10}>
           <HStack spacing={"70px"} alignItems={"center"}>
+          <Link
+           as={ReactRouterLink}
+           to="/"
+           >
+
             <Text
               textAlign="left"
               fontSize="32px"
               fontWeight={500}
               color="black"
-            >
+              >
               Grocery
             </Text>
+              </Link>
             <CloseButton size={"32px"} onClick={onClose} />
           </HStack>
         </DrawerHeader>

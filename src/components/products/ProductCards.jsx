@@ -90,7 +90,7 @@ const productsData = [
 const ProductCards = ({ only2 }) => {
   return (
     <SimpleGrid
-      columns={[1, 2, 3, 4]}
+      columns={[2, 2, 3, 4]}
       placeItems="center"
       spacingX="10px"
       spacingY="20px"
