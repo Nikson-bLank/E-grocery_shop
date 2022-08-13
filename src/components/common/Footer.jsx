@@ -13,6 +13,8 @@ import {
   Flex,
   Button,
   Image,
+  Container,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { payment_methods } from "../../images/IMAGE_IMPORTS";
@@ -79,18 +81,11 @@ export default function Footer() {
       justifyContent="center"
       alignItems="center"
       paddingTop={"70px"}
+      mt={10}
     >
-      <Box
-        w={{ base: "95%", xl: "80%" }}
-        display="flex"
-        my={10}
-        gap={10}
-        // flexDirection={{ base: "column", md: "row" }}
-        flexWrap="wrap"
-        justifyContent="space-between"
-      >
-        <Box>
-          <Box>
+      <Container maxW={{ base: "9xl", xl: "6xl" }}>
+        <SimpleGrid columns={[1,1,1,3]} spacing={10}>
+          <Stack>
             <Text
               textAlign="left"
               fontSize="32px"
@@ -99,103 +94,107 @@ export default function Footer() {
             >
               Grocery
             </Text>
-          </Box>
-          <Box></Box>
-        </Box>
-        <Box>
-          <Box mb={3}>
-            <ListHeader children={"Useful Links"} />
-          </Box>
-          <Flex gap={20}>
-            <List>
-              {FOOT_LINKS_1.map((footLink) => (
-                <ListItem mb={2} key={footLink.id}>
-                  <Link
-                    _hover={{
-                      textDecoration: "none",
-                    }}
-                    href={footLink.link}
-                  >
-                    {footLink.label}
-                  </Link>
-                </ListItem>
-              ))}
-            </List>
-            <List>
-              {FOOT_LINKS_2.map((footLink) => (
-                <ListItem mb={2} key={footLink.id}>
-                  <Link
-                    _hover={{
-                      textDecoration: "none",
-                    }}
-                    href={footLink.link}
-                  >
-                    {footLink.label}
-                  </Link>
-                </ListItem>
-              ))}
-            </List>
-          </Flex>
-        </Box>
-        <Box>
-          <Box mb={3}>
-            <ListHeader children={"Join Our Newsletter Now"} />
-          </Box>
-          <Box>
-            <Text fontSize="sm">
-              Get E-mail updates about our latest shop and special offers.
-            </Text>
-            <Stack direction={"row"} my={10}>
-              <Input
-                placeholder={"Your email address"}
-                bg={"#fff"}
-                border={0}
-                borderRadius={0}
-                p={4}
-                _focus={{
-                  bg: "#fff",
-                }}
-              />
-              <Button
-                bg={"#7fad39"}
-                color={useColorModeValue("white", "gray.800")}
-                aria-label="Subscribe"
-                borderRadius={0}
-                fontWeight={800}
-                px={"26px"}
-              >
-                SUBSCRIBE
-              </Button>
+
+            <Box>
+            </Box>
+          </Stack>
+          <Stack spacing={5}>
+            <Box>
+              <ListHeader children={"Useful Links"} />
+            </Box>
+            <Flex gap={20}>
+              <List>
+                {FOOT_LINKS_1.map((footLink) => (
+                  <ListItem mb={2} key={footLink.id}>
+                    <Link
+                      _hover={{
+                        textDecoration: "none",
+                      }}
+                      href={footLink.link}
+                    >
+                      {footLink.label}
+                    </Link>
+                  </ListItem>
+                ))}
+              </List>
+              <List>
+                {FOOT_LINKS_2.map((footLink) => (
+                  <ListItem mb={2} key={footLink.id}>
+                    <Link
+                      _hover={{
+                        textDecoration: "none",
+                      }}
+                      href={footLink.link}
+                    >
+                      {footLink.label}
+                    </Link>
+                  </ListItem>
+                ))}
+              </List>
+            </Flex>
+          </Stack>
+          <Stack direction={"column"} spacing={5}>
+            <Box>
+              <ListHeader children={"Join Our Newsletter Now"} />
+            </Box>
+            <Stack direction={"column"} spacing={5}>
+              <Text fontSize="sm">
+                Get E-mail updates about our latest shop and special offers.
+              </Text>
+              <Stack direction={"row"}>
+                <Input
+                  placeholder={"Your email address"}
+                  bg={"#fff"}
+                  border={0}
+                  borderRadius={0}
+                  p={4}
+                  _focus={{
+                    bg: "#fff",
+                  }}
+                />
+                <Button
+                  bg={"#7fad39"}
+                  color={useColorModeValue("white", "gray.800")}
+                  aria-label="Subscribe"
+                  borderRadius={0}
+                  fontWeight={800}
+                  px={"26px"}
+                >
+                  SUBSCRIBE
+                </Button>
+              </Stack>
+              <Stack direction={"row"} spacing={6}>
+                <SocialButton label={"Twitter"} href={"#"}>
+                  <FaTwitter />
+                </SocialButton>
+                <SocialButton label={"YouTube"} href={"#"}>
+                  <FaYoutube />
+                </SocialButton>
+                <SocialButton label={"Instagram"} href={"#"}>
+                  <FaInstagram />
+                </SocialButton>
+              </Stack>
             </Stack>
-            <Stack direction={"row"} spacing={6}>
-              <SocialButton label={"Twitter"} href={"#"}>
-                <FaTwitter />
-              </SocialButton>
-              <SocialButton label={"YouTube"} href={"#"}>
-                <FaYoutube />
-              </SocialButton>
-              <SocialButton label={"Instagram"} href={"#"}>
-                <FaInstagram />
-              </SocialButton>
-            </Stack>
-          </Box>
-        </Box>
-      </Box>
-      <Box w={{ base: "95%", xl: "80%" }}>
+          </Stack>
+        </SimpleGrid>
+      </Container>
+      <Container maxW={{ base: "9xl", xl: "6xl" }}>
         <Divider margin="auto" />
-        <Flex
+        <SimpleGrid
           padding={"15px 0px"}
-          flexDirection={{ base: "column", xl: "row" }}
-          justify="space-between"
+          columns={[1, 1, 1, 2]}
+          placeContent={"space-between"}
+          spacing={5}
         >
           <Box>
-            Copyright ©2021 All rights reserved | This template is inspired by Jassa 
+            Copyright ©2021 All rights reserved | This template is inspired by
+            Jassa
           </Box>
           <Box>
             <Image src={payment_methods} alt="Payment methods" />
           </Box>
-        </Flex>
-      </Box>
+        </SimpleGrid>
+      </Container>
     </Box>
   );
 }

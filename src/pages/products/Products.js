@@ -1,13 +1,15 @@
 import {
   Box,
   Button,
+  Center,
   Container,
+  Divider,
   Flex,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import ProductCards from "../../components/products/ProductCards";
+import ProductCards from "../../components/products/product_lists/ProductCards";
 import DesktopProductFilter from "../../components/products/product_filters/DesktopProductFilter";
 import MobileProductFilter from "../../components/products/product_filters/MobileProductFilter";
 
@@ -26,7 +28,7 @@ const Products = () => {
           width={"25%"}
           px="6"
           border="none"
-          borderRight="1px solid #d9d9d9 "
+          borderRight="1px solid #e2e8f0 "
         >
           <DesktopProductFilter />
         </Box>

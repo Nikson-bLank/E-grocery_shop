@@ -17,12 +17,16 @@ import CartDetails from "../../components/products/product_details/CartDetails";
 import ProductDescription from "../../components/products/product_details/ProductDescription";
 import DetailedDescription from "../../components/products/product_details/detailed_description/DetailedDescription";
 import ReviewDetails from "../../components/products/product_details/ReviewDetails";
-import ProductCards from "../../components/products/ProductCards";
+import ProductCards from "../../components/products/product_lists/ProductCards";
+import { useEffect } from "react";
+import SimilarProducts from "../../components/products/similar_products/SimilarProducts";
 
 const ProductDetails = () => {
   //  const param = useParams()
 
   //  console.log(param.id);
+
+
 
   return (
     <Container maxW={{ base: "9xl", xl: "6xl" }}>
@@ -38,15 +42,7 @@ const ProductDetails = () => {
       </SimpleGrid>
       <DetailedDescription />
       <ReviewDetails />
-      <Box mt={10}>
-        <Text fontSize={"2xl"} fontWeight="500">
-          Similar Products
-        </Text>
-        <Divider />
-        <Box my={5}>
-          <ProductCards only2 />
-        </Box>
-      </Box>
+       <SimilarProducts></SimilarProducts>
     </Container>
   );
 };

@@ -11,7 +11,7 @@ const QuantityButton = ({ label, icon, on_click }) => {
       aria-label={label}
       borderRadius={0}
       border="1px solid #7fad39"
-      letterSpacing="2px"
+      // letterSpacing="2px"
       fontWeight={600}
       px={"26px"}
       _hover={{
@@ -33,7 +33,7 @@ const CartButton = ({label, on_click}) => {
       color={"#fff"}
       aria-label="add to cart"
       borderRadius={0}
-      letterSpacing="2px"
+      // letterSpacing="2px"
       fontWeight={600}
       px={"26px"}
       _hover={{

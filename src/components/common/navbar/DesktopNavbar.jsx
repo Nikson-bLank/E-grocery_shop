@@ -57,8 +57,9 @@ const DesktopNavbar = () => {
 };
 const DesktopSubNav = ({ label, href }) => {
   return (
-    <chakraLink
-      href={href}
+    <Link
+      as={ReactRouterLink}
+      to={href}
       role={"group"}
       display={"block"}
       p={2}
@@ -78,7 +79,7 @@ const DesktopSubNav = ({ label, href }) => {
           </Text>
         </Box>
       </Stack>
-    </chakraLink>
+    </Link>
   );
 };
 
