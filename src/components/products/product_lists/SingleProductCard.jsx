@@ -22,7 +22,7 @@ import {
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate, Link as ReactRouterLink } from "react-router-dom";
 
-function SingleProductCard({ productData}) {
+function SingleProductCard({ productData }) {
   const navigate = useNavigate();
 
   return (
@@ -35,7 +35,9 @@ function SingleProductCard({ productData}) {
       position="relative"
       transition={"all 0.3s ease"}
       display="flex"
+      w={{ base: "100%", sm: "200px" }}
       flexDirection={{ base: "row", sm: "column" }}
+      alignSelf={"baseline"}
     >
       {productData.isNew && (
         <Badge
@@ -52,25 +54,25 @@ function SingleProductCard({ productData}) {
           New
         </Badge>
       )}
-     
-        <Image
-          src={productData.imageURL}
-          alt={`Picture of ${productData.name}`}
-          h={150}
-          // objectFit="contain"
-          // w="100%"
-          onClick={() => {
-            navigate(`/product/${productData.name}`);
-          }}
-          cursor="pointer"
-        />
- 
+
+      <Image
+        src={productData.imageURL}
+        alt={`Picture of ${productData.name}`}
+        alignSelf="center"
+        h={145}
+        w={{ base: "50%", sm: "100%" }}
+        objectFit="fill"
+        onClick={() => {
+          navigate(`/product/${productData.id}`);
+        }}
+        cursor="pointer"
+      />
 
       <Flex direction="row" gap={2} p={3} justify="space-between">
         <Flex direction="column" gap={1}>
           <Link
             as={ReactRouterLink}
-            to={`/product/${productData.name}`}
+            to={`/product/${productData.id}`}
             fontSize="16px"
             fontWeight={500}
             color={"#252525"}
