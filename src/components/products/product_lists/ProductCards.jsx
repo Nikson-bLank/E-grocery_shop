@@ -133,13 +133,16 @@ const ProductCards = () => {
             w={{ base: "100%", sm: "200px" }}
             flexDirection={{ base: "row", sm: "column" }}
             alignSelf={"baseline"}
+            key={idx}
           >
             <Skeleton
               h={145}
               w={{ base: "50%", sm: "100%" }}
               fadeDuration={1}
             ></Skeleton>
-                <SkeletonText mt={4} p={3} noOfLines={4} fadeDuration={1}></SkeletonText>
+      
+                <SkeletonText w={"100%"} mt={4} p={3} noOfLines={4} fadeDuration={1}></SkeletonText>
+    
           </Box>
         ))}
       </SimpleGrid>

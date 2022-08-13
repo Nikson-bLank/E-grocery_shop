@@ -68,8 +68,7 @@ function SingleProductCard({ productData }) {
         cursor="pointer"
       />
 
-      <Flex direction="row" gap={2} p={3} justify="space-between">
-        <Flex direction="column" gap={1}>
+        <Flex direction="column" gap={2} p={3} justify="space-between">
           <Link
             as={ReactRouterLink}
             to={`/product/${productData.id}`}
@@ -128,7 +127,7 @@ function SingleProductCard({ productData }) {
             />
           </Stack>
         </Flex>
-      </Flex>
+
     </Box>
   );
 }
