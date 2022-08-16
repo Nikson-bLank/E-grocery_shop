@@ -7,6 +7,7 @@ import {
   useDisclosure,
   Container,
   useMediaQuery,
+  Button,
 } from "@chakra-ui/react";
 
 import {
@@ -17,6 +18,8 @@ import {
 } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
+import CartDrawer from "../../cart/CartDrawer";
+import CartDetails from "../../products/product_details/CartDetails";
 
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
@@ -63,7 +66,20 @@ export default function Navbar() {
           align="center"
         >
           <Icon as={FaHeart} h={5} w={5}></Icon>
-          <Icon as={FaShoppingCart} h={5} w={5}></Icon>
+          <Button
+            bg={"transparent"}
+            _hover={{
+              bg: "transparent",
+            }}
+            _active={{
+              bg: "transparent",
+            }}
+            
+           
+          >
+            <Icon as={FaShoppingCart} h={5} w={5}></Icon>
+          </Button>
+          {/* <CartDrawer/> */}
           <Stack direction={"row"} spacing={1} align="center">
             <Text fontSize="sm" color={"#6f6f6f"}>
               Item:

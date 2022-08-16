@@ -17,7 +17,7 @@ const QuantityButton = ({ label, icon, on_click }) => {
       _hover={{
         shadow: "lg",
         color: "#fff",
-        bg: "#7fad39",
+        bg: "#729c33"
       }}
       onClick={on_click}
     >
@@ -26,7 +26,7 @@ const QuantityButton = ({ label, icon, on_click }) => {
   );
 };
 
-const CartButton = ({label, on_click}) => {
+const CartButton = ({ label, on_click }) => {
   return (
     <Button
       bg={"#7fad39"}
@@ -39,9 +39,9 @@ const CartButton = ({label, on_click}) => {
       _hover={{
         shadow: "lg",
         color: "#fff",
-        bg: "#7fad39",
+        bg: "#729c33"
       }}
-    //   onClick={on_click}
+      //   onClick={on_click}
     >
       {label}
     </Button>
@@ -64,7 +64,12 @@ const CartDetails = () => {
 
   return (
     <Box>
-      <Flex w="50%" direction={"row"} align="center" justify="space-between">
+      <Flex
+        w={{ base: "100%", sm: "50%" }}
+        direction={"row"}
+        align="center"
+        justify="space-between"
+      >
         <QuantityButton
           label={"decrease quantity"}
           icon={FaMinus}
@@ -77,9 +82,15 @@ const CartDetails = () => {
           on_click={increaseItemQuantity}
         />
       </Flex>
-      <Flex w="50%" mt={4} direction={"column"} gap={4} justify={"flex-start"} >
-        <CartButton label={"Add to cart"}/>
-        <CartButton label={"Add to Whishlist"}/>
+      <Flex
+        w={{ base: "100%", sm: "50%" }}
+        mt={4}
+        direction={"column"}
+        gap={4}
+        justify={"flex-start"}
+      >
+        <CartButton label={"Add to cart"} />
+        <CartButton label={"Add to Whishlist"} />
       </Flex>
     </Box>
   );
