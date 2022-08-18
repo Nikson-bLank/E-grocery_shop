@@ -8,6 +8,8 @@ import {
   Container,
   useMediaQuery,
   Button,
+  Badge,
+  Box,
 } from "@chakra-ui/react";
 
 import {
@@ -25,7 +27,17 @@ import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
 
 export default function Navbar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isMobileNavbarOpen,
+    onOpen: onMobileNavbarOpen,
+    onClose: onMobileNavbarClose,
+  } = useDisclosure();
+  const {
+    isOpen: isCartDrawerOpen,
+    onOpen: onCartDrawerOpen,
+    onClose: onCartDrawerClose,
+  } = useDisclosure();
+
   const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
 
   return (
@@ -59,14 +71,8 @@ export default function Navbar() {
             <DesktopNavbar />
           </Flex>
         </Flex>
-        <Stack
-          justify={"center"}
-          direction={"row"}
-          spacing={{ base: 3, sm: 6 }}
-          align="center"
-        >
-          <Icon as={FaHeart} h={5} w={5}></Icon>
-          <Button
+        <Stack justify={"center"} direction={"row"} align="center">
+          <IconButton
             bg={"transparent"}
             _hover={{
               bg: "transparent",
@@ -74,12 +80,22 @@ export default function Navbar() {
             _active={{
               bg: "transparent",
             }}
-            
-           
-          >
-            <Icon as={FaShoppingCart} h={5} w={5}></Icon>
-          </Button>
-          {/* <CartDrawer/> */}
+            // onClick={onCartDrawerOpen}
+            icon={<FaHeart />}
+          />
+
+          <IconButton
+            bg={"transparent"}
+            _hover={{
+              bg: "transparent",
+            }}
+            _active={{
+              bg: "transparent",
+            }}
+            onClick={onCartDrawerOpen}
+            icon={<FaShoppingCart />}
+          />
+
           <Stack direction={"row"} spacing={1} align="center">
             <Text fontSize="sm" color={"#6f6f6f"}>
               Item:
@@ -91,7 +107,7 @@ export default function Navbar() {
         </Stack>
         <Flex ml={2} display={{ base: "flex", xl: "none" }}>
           <IconButton
-            onClick={onOpen}
+            onClick={onMobileNavbarOpen}
             variant="ghost"
             mx={1}
             icon={<Icon as={FaBars} w={5} h={5} />}
@@ -101,7 +117,8 @@ export default function Navbar() {
           />
         </Flex>
       </Flex>
-      <MobileNavbar isOpen={isOpen} onClose={onClose} />
+      <MobileNavbar isOpen={isMobileNavbarOpen} onClose={onMobileNavbarClose} />
+      <CartDrawer isOpen={isCartDrawerOpen} onClose={onCartDrawerClose} />
     </Container>
   );
 }

@@ -4,3 +4,14 @@
   box-sizing: border-box;
   font-family: "Cairo", sans-serif;
 }
+
+
+.slick-slide
+{
+    padding: 30px 10px; 
+   
+}
+
+.slick-prev:before, .slick-next:before {
+  color: black !important;
+}

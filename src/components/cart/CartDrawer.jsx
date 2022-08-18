@@ -18,10 +18,9 @@ import {
 import React from "react";
 import CartItem from "./CartItem";
 
-const CartDrawer = () => {
-  //   const { isOpen, onOpen, onClose } = useDisclosure();
+const CartDrawer = ({onClose, isOpen}) => {
   return (
-    <Drawer isOpen={true} placement="right" size={"lg"}>
+    <Drawer onClose={onClose} isOpen={isOpen} placement="right" size={"lg"}>
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton />
@@ -41,8 +40,8 @@ const CartDrawer = () => {
                 <Text>Total</Text>
                 </Flex>
                 <Flex textAlign={"right"} direction="column" >
-                <Text>₹50</Text>
-                <Text>₹1550</Text>
+                <Text>₹ 50</Text>
+                <Text>₹ 1550</Text>
                 </Flex>
               </Flex>
             </Box>
