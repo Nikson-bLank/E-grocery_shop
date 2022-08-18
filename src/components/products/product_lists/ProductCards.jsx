@@ -12,7 +12,7 @@ import SingleProductCard from "./SingleProductCard";
 import useFetch from "../../../hooks/useFetch";
 
 const ProductCards = () => {
-  const { isLoading, data } = useFetch("/products");
+  const { isLoading, data:productData } = useFetch("/products");
 
   const noOfBoxes = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -66,7 +66,7 @@ const ProductCards = () => {
       spacingX="10px"
       spacingY="20px"
     >
-      {data?.map((productData, idx) => (
+      {productData?.map((productData, idx) => (
         <SingleProductCard
           key={idx}
           productData={{ ...productData }}

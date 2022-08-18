@@ -33,7 +33,7 @@ const breakPoints = [
 ];
 
 const SimilarProducts = () => {
-  const { isLoading, data } = useFetch("/products");
+  const { isLoading, data:similarProducts } = useFetch("/products");
   // const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
   // const [isLargerThan380] = useMediaQuery("(min-width: 380px)");
 
@@ -122,7 +122,7 @@ const SimilarProducts = () => {
         naturalSlideHeight={100}
         naturalSlideWidth={100}
         orientation="horizontal"
-        totalSlides={data?.length}
+        totalSlides={similarProducts?.length}
         visibleSlides={4}
         step={4}
         isIntrinsicHeight
@@ -134,7 +134,7 @@ const SimilarProducts = () => {
             padding: "0",
           }}
         >
-          {data.map((productData, idx) => {
+          {similarProducts.map((productData, idx) => {
             return (
               <Slide
                 style={{
