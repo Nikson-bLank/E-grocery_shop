@@ -11,7 +11,6 @@ import React from "react";
 import SingleProductCard from "./SingleProductCard";
 import useFetch from "../../../hooks/useFetch";
 
-
 const ProductCards = () => {
   const { isLoading, data } = useFetch("/products");
 
@@ -39,9 +38,10 @@ const ProductCards = () => {
             flexDirection={{ base: "row", sm: "column" }}
             alignSelf={"baseline"}
             key={idx}
+            h={{ base: "100%", sm: "310px" }}
           >
             <Skeleton
-              h={145}
+              h={150}
               w={{ base: "50%", sm: "100%" }}
               fadeDuration={1}
             ></Skeleton>

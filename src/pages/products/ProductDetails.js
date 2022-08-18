@@ -27,17 +27,23 @@ import Loading from "../../components/common/Loading";
 const ProductDetails = () => {
   const param = useParams();
 
-  const { isLoading, data } = useFetch(
-    `/products/${param.id}`
-  );
+  const { isLoading, data } = useFetch(`/products/${param.id}`);
 
   useEffect(() => {
-    window.scrollTo({top:0});
-    console.log("useEffect call");
+    window.scrollTo(0,0);
   }, [param.id]);
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <Container
+        maxW={{
+          base: "9xl",
+          xl: "6xl",
+        }}
+      >
+        <Loading />
+      </Container>
+    );
   }
 
   return (
@@ -47,37 +53,42 @@ const ProductDetails = () => {
         xl: "6xl",
       }}
     >
-      <SimpleGrid columns={[1, 1, 2]} w="100%">
-        <Box borderWidth={"1px"}>
-          <Image
-            w="100%"
-            h="500px"
-            objectFit={"cover"}
-            alt="product"
-            src={data?.imageURL}
-          ></Image>
-        </Box>
-        <Flex
-          direction="column"
-          justify="space-between"
-          px={5}
-          h="auto"
-          gap={5}
-        >
-          <PriceDetails
-            name={data?.name}
-            price={data?.price}
-            discountPercent={data?.discountPercent}
-            discountPrice={data?.discountPrice}
-          />
-          <CartDetails />
-          <ProductDescription description={data?.description} />
-        </Flex>
-      </SimpleGrid>
-      <DetailedDescription name={data?.name} description={data?.description} />
-      <ReviewDetails />
       <Box>
-      <SimilarProducts />
+        <SimpleGrid columns={[1, 1, 2]} w="100%">
+          <Box borderWidth={"1px"}>
+            <Image
+              w="100%"
+              h="500px"
+              objectFit={"cover"}
+              alt="product"
+              src={data?.imageURL}
+            ></Image>
+          </Box>
+          <Flex
+            direction="column"
+            justify="space-between"
+            px={5}
+            h="auto"
+            gap={5}
+          >
+            <PriceDetails
+              name={data?.name}
+              price={data?.price}
+              discountPercent={data?.discountPercent}
+              discountPrice={data?.discountPrice}
+            />
+            <CartDetails />
+            <ProductDescription description={data?.description} />
+          </Flex>
+        </SimpleGrid>
+        <DetailedDescription
+          name={data?.name}
+          description={data?.description}
+        />
+        <ReviewDetails />
+      </Box>
+      <Box>
+        <SimilarProducts />
       </Box>
     </Container>
   );

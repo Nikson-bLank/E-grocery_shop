@@ -43,7 +43,7 @@ function SingleSimilarProduct({ productData }) {
       position="relative"
       transition={"all 0.3s ease"}
       display="flex"
-      w={"100%"}
+      w={"200px"}
       flexDirection={{
         base: "row",
         sm: "column",
