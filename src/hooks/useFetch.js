@@ -10,7 +10,7 @@ const useFetch = (api) => {
 
   const fetchData = useCallback(async () => {
     setIsloading(true);
-    let response = await axios.get(process.env.REACT_APP_DEV_BASE_URL+api);
+    let response = await axios.get("https://62f6249ca3bce3eed7ba33e8.mockapi.io"+api);
     let result = await response.data;
     setIsloading(false);
     setData(result);
