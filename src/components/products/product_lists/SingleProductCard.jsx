@@ -61,10 +61,10 @@ function SingleProductCard({ productData }) {
   return (
     <Box
       as={motion.div}
+      // animate={{ opacity: 1 }}
+      // initial={{ opacity: 0 }}
+      // exit={{ opacity: 0 }}
       layout
-      animate={{opacity:1}}
-      initial={{opacity:0}}
-      exit={{opacity:0}}
       bg={"#fff"}
       _hover={{ shadow: "xl" }}
       shadow={{

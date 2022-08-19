@@ -10,7 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FaStarHalfAlt, FaStar, FaMinus, FaPlus } from "react-icons/fa";
-import React from "react";
+import React, { useState } from "react";
 import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
 import { feat_2 } from "../../images/IMAGE_IMPORTS";
 
@@ -40,6 +40,18 @@ const QuantityButton = ({ label, icon, on_click }) => {
 
 const CartItem = () => {
   const navigate = useNavigate();
+  const [itemCount, setItemCount] = useState(1);
+
+  const increaseItemQuantity = () => {
+    setItemCount((prevState) => prevState + 1);
+  };
+
+  const decreaseItemQuantity = () => {
+    setItemCount((prevState) => {
+      if (prevState === 1) return 1;
+      return prevState - 1;
+    });
+  };
 
   return (
     <Box
@@ -95,13 +107,13 @@ const CartItem = () => {
         <QuantityButton
           label={"decrease quantity"}
           icon={FaMinus}
-          //   on_click={decreaseItemQuantity}
+          on_click={decreaseItemQuantity}
         />
-        <Text fontSize="xl">1</Text>
+        <Text fontSize="xl">{itemCount}</Text>
         <QuantityButton
           label={"increase quantity"}
           icon={FaPlus}
-          //   on_click={increaseItemQuantity}
+          on_click={increaseItemQuantity}
         />
       </HStack>
     </Box>

@@ -56,7 +56,7 @@ const Header = () => {
           <Center h="20px">
             <Divider orientation="vertical"></Divider>
           </Center>
-          <Text fontSize="sm">Free Shipping for all Order of $99</Text>
+          <Text fontSize="sm">Free Shipping for all Order of ₹149 and above</Text>
         </HStack>
 
         <Flex gap={5}>

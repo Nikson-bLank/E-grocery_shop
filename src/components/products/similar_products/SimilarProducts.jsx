@@ -24,7 +24,6 @@ import {
   Slider,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import ReactElasticCarousel from "react-elastic-carousel";
 import LoadingProductCarousel from "../../common/loading/LoadingProductCarousel";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -83,36 +82,38 @@ const SimilarProducts = () => {
           orientation="horizontal"
           totalSlides={similarProducts?.length}
           visibleSlides={4}
-          step={4}
+          step={1}
           isIntrinsicHeight
         >
-          <ButtonBack>
-            <IconButton as={FaChevronLeft}></IconButton>
-          </ButtonBack>
-          <Slider
-            style={{
-              minHeight: "350px",
-              width: "100%",
-            }}
-          >
-            {similarProducts.map((productData, idx) => {
-              return (
-                <Slide
-                  style={{
-                    margin: "0px 20px ",
-                  }}
-                  key={productData.id}
-                  index={idx}
-                >
-                  <SingleProductCard productData={productData} />
-                </Slide>
-              );
-            })}
-          </Slider>
+          <HStack>
+            <ButtonBack>
+              <Icon as={FaChevronLeft}></Icon>
+            </ButtonBack>
+            <Slider
+              style={{
+                minHeight: "350px",
+                width: "100%",
+              }}
+            >
+              {similarProducts.map((productData, idx) => {
+                return (
+                  <Slide
+                    style={{
+                      margin: "0px 20px ",
+                    }}
+                    key={productData.id}
+                    index={idx}
+                  >
+                    <SingleProductCard productData={productData} />
+                  </Slide>
+                );
+              })}
+            </Slider>
 
-          <ButtonNext>
-            <IconButton as={FaChevronRight}></IconButton>
-          </ButtonNext>
+            <ButtonNext>
+              <Icon as={FaChevronRight} aria-label="next products"></Icon>
+            </ButtonNext>
+          </HStack>
         </CarouselProvider>
       </Box>
 

@@ -2,6 +2,7 @@ import {
   Box,
   Center,
   Divider,
+  Flex,
   HStack,
   Icon,
   SimpleGrid,
@@ -9,9 +10,9 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import useFetch from "../../../../hooks/useFetch";
-import SingleProductCard from "../../../products/product_lists/SingleProductCard";
-import LoadingCard from "../../../common/loading/LoadingCard";
+import useFetch from "../../../hooks/useFetch";
+import SingleProductCard from "../../products/product_lists/SingleProductCard";
+import LoadingCard from "../../common/loading/LoadingCard";
 import { FaRegFrownOpen } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -39,7 +40,7 @@ const FilterProductBox = () => {
   }, [data, activeFilter]);
 
   return (
-    <AnimatePresence>
+    <>
       <VStack mb={5} spacing={5}>
         <Text align={"center"} fontSize={"32px"} fontWeight="700">
           Featured Products
@@ -83,8 +84,8 @@ const FilterProductBox = () => {
       </VStack>
       {isLoading ? (
         <LoadingCard />
-      ) : filteredProduct?.length < 1 ? (
-        <Center color={"#ef3e3e"}>
+      ) : !isLoading && filteredProduct?.length < 1 ? (
+        <Center color={"#ef3e3e"} p={10}>
           <Text align={"center"} fontSize={"24px"} fontWeight="500">
             Oops! no data found
           </Text>
@@ -94,21 +95,22 @@ const FilterProductBox = () => {
         <SimpleGrid
           as={motion.div}
           columns={[1, 2, 3, 4]}
-          placeItems="center"
-          spacingX="20px"
+          spacingX="50px"
           spacingY="20px"
         >
-          {filteredProduct?.slice(0, 8)?.map((productData) => {
-            return (
-              <SingleProductCard
-                key={productData.id}
-                productData={productData}
-              />
-            );
-          })}
+          <AnimatePresence>
+            {filteredProduct?.slice(0, 8)?.map((productData) => {
+              return (
+                <SingleProductCard
+                  key={productData.id}
+                  productData={productData}
+                />
+              );
+            })}
+          </AnimatePresence>
         </SimpleGrid>
       )}
-    </AnimatePresence>
+    </>
   );
 };
 
