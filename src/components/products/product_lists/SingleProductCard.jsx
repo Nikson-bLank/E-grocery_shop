@@ -27,6 +27,7 @@ import {
 } from "react-icons/ai";
 import { useNavigate, Link as ReactRouterLink } from "react-router-dom";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 function SingleProductCard({ productData }) {
   const navigate = useNavigate();
@@ -59,6 +60,11 @@ function SingleProductCard({ productData }) {
 
   return (
     <Box
+      as={motion.div}
+      layout
+      animate={{opacity:1}}
+      initial={{opacity:0}}
+      exit={{opacity:0}}
       bg={"#fff"}
       _hover={{ shadow: "xl" }}
       shadow={{
@@ -108,7 +114,7 @@ function SingleProductCard({ productData }) {
         }}
         cursor="pointer"
       />
-      <Flex direction="column" gap={2} p={3} >  
+      <Flex direction="column" gap={2} p={3}>
         <Link
           as={ReactRouterLink}
           to={`/product/${productData.id}`}

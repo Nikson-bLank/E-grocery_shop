@@ -5,6 +5,7 @@ import {
   Flex,
   HStack,
   Icon,
+  IconButton,
   SimpleGrid,
   Skeleton,
   SkeletonText,
@@ -24,6 +25,8 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import ReactElasticCarousel from "react-elastic-carousel";
+import LoadingProductCarousel from "../../common/loading/LoadingProductCarousel";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const breakPoints = [
   { width: 1, itemsToShow: 1, itemsToScroll: 1 },
@@ -33,11 +36,9 @@ const breakPoints = [
 ];
 
 const SimilarProducts = () => {
-  const { isLoading, data:similarProducts } = useFetch("/products");
+  const { isLoading, data: similarProducts } = useFetch("/products");
   // const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
   // const [isLargerThan380] = useMediaQuery("(min-width: 380px)");
-
-  const noOfBoxes = [1, 2, 3, 4, 5, 6, 7, 8];
 
   if (isLoading) {
     return (
@@ -46,53 +47,9 @@ const SimilarProducts = () => {
           Similar Products
         </Text>
         <Divider />
-        <CarouselProvider
-          naturalSlideHeight={100}
-          naturalSlideWidth={100}
-          orientation="horizontal"
-          totalSlides={noOfBoxes?.length}
-          visibleSlides={4}
-          step={4}
-          isIntrinsicHeight
-        >
-          <Slider
-            style={{
-              minHeight: "350px",
-              width: "100%",
-            }}
-          >
-            {noOfBoxes.map((_, idx) => (
-              <Box
-                bg={"#fff"}
-                _hover={{
-                  shadow: "xl",
-                }}
-                shadow={{ base: "xl", sm: "md" }}
-                position="relative"
-                transition={"all 0.3s ease"}
-                display="flex"
-                w={"100%"}
-                flexDirection={{ base: "row", sm: "column" }}
-                alignSelf={"baseline"}
-                key={idx}
-                h="310px"
-              >
-                <Skeleton h={150} w={"100%"} fadeDuration={1}></Skeleton>
-
-                <SkeletonText
-                  w={"100%"}
-                  h={"160px"}
-                  mt={4}
-                  p={3}
-                  noOfLines={4}
-                  fadeDuration={1}
-                ></SkeletonText>
-              </Box>
-            ))}
-          </Slider>
-          <ButtonBack>Back</ButtonBack>
-          <ButtonNext>Next</ButtonNext>
-        </CarouselProvider>
+        <Box my={4}>
+          <LoadingProductCarousel />
+        </Box>
       </Box>
     );
   }
@@ -108,6 +65,7 @@ const SimilarProducts = () => {
         direction={"row"}
         overflowX={"auto"}
         gap={4}
+        <Divider />
         py={10}
       >
        {products.map(productData=>(
@@ -118,39 +76,45 @@ const SimilarProducts = () => {
       {/* {data.map((productData) => {
           return <SingleSimilarProduct productData={productData} />;
         })} */}
-      <CarouselProvider
-        naturalSlideHeight={100}
-        naturalSlideWidth={100}
-        orientation="horizontal"
-        totalSlides={similarProducts?.length}
-        visibleSlides={4}
-        step={4}
-        isIntrinsicHeight
-      >
-        <Slider
-          style={{
-            minHeight: "350px",
-            width: "100%",
-            padding: "0",
-          }}
+      <Box my={4}>
+        <CarouselProvider
+          naturalSlideHeight={10}
+          naturalSlideWidth={10}
+          orientation="horizontal"
+          totalSlides={similarProducts?.length}
+          visibleSlides={4}
+          step={4}
+          isIntrinsicHeight
         >
-          {similarProducts.map((productData, idx) => {
-            return (
-              <Slide
-                style={{
-                  marginRight: "10px",
-                }}
-                key={productData.id}
-                index={idx}
-              >
-                <SingleProductCard productData={productData} />
-              </Slide>
-            );
-          })}
-        </Slider>
-        <ButtonBack>Back</ButtonBack>
-        <ButtonNext>Next</ButtonNext>
-      </CarouselProvider>
+          <ButtonBack>
+            <IconButton as={FaChevronLeft}></IconButton>
+          </ButtonBack>
+          <Slider
+            style={{
+              minHeight: "350px",
+              width: "100%",
+            }}
+          >
+            {similarProducts.map((productData, idx) => {
+              return (
+                <Slide
+                  style={{
+                    margin: "0px 20px ",
+                  }}
+                  key={productData.id}
+                  index={idx}
+                >
+                  <SingleProductCard productData={productData} />
+                </Slide>
+              );
+            })}
+          </Slider>
+
+          <ButtonNext>
+            <IconButton as={FaChevronRight}></IconButton>
+          </ButtonNext>
+        </CarouselProvider>
+      </Box>
 
       {/* <ReactElasticCarousel  breakPoints={breakPoints}>
         {data.map((productData, idx) => {

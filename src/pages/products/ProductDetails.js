@@ -22,7 +22,7 @@ import SimilarProducts from "../../components/products/similar_products/SimilarP
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
-import Loading from "../../components/common/Loading";
+import Loading from "../../components/common/loading/Loading";
 
 const ProductDetails = () => {
   const param = useParams();

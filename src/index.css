@@ -5,3 +5,7 @@
   font-family: "Cairo", sans-serif;
 }
 
+
+.active_filter_category{
+  border-bottom: 2px solid #7fad39;
+}
