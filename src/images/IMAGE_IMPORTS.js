@@ -18,8 +18,8 @@ import blog_1 from "../images/blog/blog-1.jpg";
 import blog_2 from "../images/blog/blog-2.jpg";
 import blog_3 from "../images/blog/blog-3.jpg";
 
-// import banner_1 from "../images/banner/banner-1.jpg";
-// import banner_2 from "../images/banner/banner-2.jpg";
+import banner_1 from "../images/banner/banner-1.jpg";
+import banner_2 from "../images/banner/banner-2.jpg";
 import heroBanner_1 from "../images/hero/banner-1.jpg";
 import heroBanner_2 from "../images/hero/banner-2.jpg";
 import heroBanner_3 from "../images/hero/banner-3.png";
@@ -46,6 +46,8 @@ export {
   blog_1,
   blog_2,
   blog_3,
+  banner_1,
+  banner_2,
   heroBanner_1,
   heroBanner_2,
   heroBanner_3,

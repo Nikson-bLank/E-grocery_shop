@@ -1,4 +1,4 @@
-import { Box, Skeleton, SkeletonText } from "@chakra-ui/react";
+import { Box, HStack, Icon, Skeleton, SkeletonText } from "@chakra-ui/react";
 import {
   ButtonBack,
   ButtonNext,
@@ -7,6 +7,7 @@ import {
   Slider,
 } from "pure-react-carousel";
 import React from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 const noOfBoxes = [1, 2, 3, 4, 5, 6, 7, 8];
 const LoadingProductCarousel = () => {
   return (
@@ -19,48 +20,56 @@ const LoadingProductCarousel = () => {
       step={4}
       isIntrinsicHeight
     >
-      <Slider
-        style={{
-          minHeight: "350px",
-          width: "100%",
-        }}
-      >
-        {noOfBoxes.map((_, idx) => (
-          <Slide
-            style={{
-              margin: "0px 20px ",
-            }}
-            key={idx}
-            index={idx}
-          >
-            <Box
-              bg={"#fff"}
-              _hover={{
-                shadow: "xl",
+      <HStack>
+        <ButtonBack>
+          <Icon as={FaChevronLeft} aria-label="next products"></Icon>
+        </ButtonBack>
+        <Slider
+          style={{
+            minHeight: "350px",
+            width: "100%",
+          }}
+        >
+          {noOfBoxes.map((_, idx) => (
+            <Slide
+              style={{
+                margin: "0px 20px ",
               }}
-              shadow={{ base: "xl", sm: "md" }}
-              position="relative"
-              transition={"all 0.3s ease"}
-              display="flex"
-              w={"100%"}
-              flexDirection={{ base: "row", sm: "column" }}
-              alignSelf={"baseline"}
-              h="310px"
+              key={idx}
+              index={idx}
             >
-              <Skeleton h={150} w={"100%"} fadeDuration={1}></Skeleton>
-
-              <SkeletonText
+              <Box
+                bg={"#fff"}
+                _hover={{
+                  shadow: "xl",
+                }}
+                shadow={{ base: "xl", sm: "md" }}
+                position="relative"
+                transition={"all 0.3s ease"}
+                display="flex"
                 w={"100%"}
-                h={"160px"}
-                mt={4}
-                p={3}
-                noOfLines={4}
-                fadeDuration={1}
-              ></SkeletonText>
-            </Box>
-          </Slide>
-        ))}
-      </Slider>
+                flexDirection={{ base: "row", sm: "column" }}
+                alignSelf={"baseline"}
+                h="310px"
+              >
+                <Skeleton h={150} w={"100%"} fadeDuration={1}></Skeleton>
+
+                <SkeletonText
+                  w={"100%"}
+                  h={"160px"}
+                  mt={4}
+                  p={3}
+                  noOfLines={4}
+                  fadeDuration={1}
+                ></SkeletonText>
+              </Box>
+            </Slide>
+          ))}
+        </Slider>
+        <ButtonNext>
+          <Icon as={FaChevronRight} aria-label="next products"></Icon>
+        </ButtonNext>
+      </HStack>
       <ButtonBack>Back</ButtonBack>
       <ButtonNext>Next</ButtonNext>
     </CarouselProvider>

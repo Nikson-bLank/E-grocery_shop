@@ -3,6 +3,7 @@ import React from "react";
 import ProductSection from "../components/home/categorized_product/ProductSection";
 import FilterProductBox from "../components/home/filter_box/FilterProductBox";
 import Hero from "../components/home/hero/Hero";
+import Banner from "../components/home/promotion_banner/Banner";
 import useFetch from "../hooks/useFetch";
 
 const Home = () => {
@@ -10,13 +11,14 @@ const Home = () => {
 
   return (
     <Container maxW={{ base: "9xl", xl: "6xl" }}>
-      <Stack direction={"column"} spacing={20}>
+      <Stack direction={"column"} spacing={10}>
         <Hero />
         <ProductSection
           productSectionTitle={"Popular Product"}
           productData={data}
           isLoading={isLoading}
         />
+        <Banner />
         <Box>
           <FilterProductBox />
         </Box>

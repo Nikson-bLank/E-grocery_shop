@@ -66,7 +66,7 @@ const HeroBanner = ({ img, headTitle, title, subTitle, buttonLink }) => {
 
       <Img
         src={img}
-        // h={"70vh"}
+        h={"100%"}
         w="100%"
         // objectFit={{ base: "contain", lg: "fill" }}
       ></Img>

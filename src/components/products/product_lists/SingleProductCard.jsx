@@ -8,8 +8,8 @@ import {
   Text,
   Link,
   Stack,
-  Skeleton,
-  SkeletonText,
+  // Skeleton,
+  // SkeletonText,
   useToast,
 } from "@chakra-ui/react";
 
@@ -61,18 +61,25 @@ function SingleProductCard({ productData }) {
   return (
     <Box
       as={motion.div}
-      // animate={{ opacity: 1 }}
-      // initial={{ opacity: 0 }}
-      // exit={{ opacity: 0 }}
       layout
+      animate={{ opacity: 1, }}
+      initial={{opacity:0}}
+      exit={{opacity:0}}
+      transition={{
+        opacity: { ease: "linear" },
+        layout: { duration: 0.3 },
+        
+      }}
+      whileHover="hover"
       bg={"#fff"}
       _hover={{ shadow: "xl" }}
       shadow={{
         base: "xl",
         sm: "md",
+        
       }}
       position="relative"
-      transition={"all 0.3s ease"}
+      // transition={"all 0.3s ease"}
       display="flex"
       w={{
         base: "100%",
