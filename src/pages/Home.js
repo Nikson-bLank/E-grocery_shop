@@ -1,23 +1,31 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
-import heroBanner from "../images/hero/banner.jpg";
-
-//component Imports
-import OurProducts from "../components/products/product_sections/our_products/OurProducts";
-import FeaturedProducts from "../components/products/product_sections/featured_products/FeaturedProducts";
-import Banner from "../components/banner/Banner";
-import CategorizedProductSection from "../components/products/product_sections/categorized_products/CategorizedProductSection";
-import HeroHeader from "../components/common/hero/HeroHeader";
+import { Box, Container, Stack, Text } from "@chakra-ui/react";
+import React from "react";
+import ProductSection from "../components/home/categorized_product/ProductSection";
+import FilterProductBox from "../components/home/filter_box/FilterProductBox";
+import Hero from "../components/home/hero/Hero";
+import Banner from "../components/home/promotion_banner/Banner";
+import useFetch from "../hooks/useFetch";
 
 const Home = () => {
+  const { isLoading, data } = useFetch("/products");
+
   return (
-    <>
-      <HeroHeader isOnHomepage />
-      <OurProducts />
-      <FeaturedProducts />
-      <CategorizedProductSection />
-      <Banner />
-    </>
+    <Container maxW={{ base: "9xl", xl: "9xl" }}>
+      <Hero />
+      <Container maxW={{ base: "9xl", xl: "7xl" }}>
+        <ProductSection
+          productSectionTitle={"Popular Product"}
+          productData={data}
+          isLoading={isLoading}
+        />
+        <Container maxW={{ base: "9xl", xl: "6xl" }}>
+          {/* <Banner /> */}
+          <Box>
+            <FilterProductBox />
+          </Box>
+        </Container>
+      </Container>
+    </Container>
   );
 };
 

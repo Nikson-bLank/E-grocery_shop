@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
+}
+
+
+.active_filter_category{
+  border-bottom: 2px solid #7fad39;
+}
+
+a.active-link{
+  color:#7fad39;
+}
