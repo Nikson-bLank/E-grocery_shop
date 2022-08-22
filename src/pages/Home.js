@@ -10,19 +10,19 @@ const Home = () => {
   const { isLoading, data } = useFetch("/products");
 
   return (
-    <Container maxW={{ base: "9xl", xl: "6xl" }}>
-      <Stack direction={"column"} spacing={10}>
+    <Container maxW={{ base: "9xl", xl: "9xl" }}>
         <Hero />
+        <Container maxW={{ base: "9xl", xl: "7xl" }}>
         <ProductSection
           productSectionTitle={"Popular Product"}
           productData={data}
           isLoading={isLoading}
         />
-        <Banner />
+        {/* <Banner /> */}
         <Box>
           <FilterProductBox />
         </Box>
-      </Stack>
+        </Container>
     </Container>
   );
 };

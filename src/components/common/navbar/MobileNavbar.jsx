@@ -31,20 +31,22 @@ const MobileNavbar = ({ onClose, isOpen }) => {
       <DrawerContent>
         <DrawerHeader mt={10}>
           <HStack spacing={"70px"} alignItems={"center"}>
-          <Link
-           as={ReactRouterLink}
-           to="/"
-           >
-
-            <Text
-              textAlign="left"
-              fontSize="32px"
-              fontWeight={500}
-              color="black"
+            <Link
+              as={ReactRouterLink}
+              to="/"
+              _hover={{
+                textDecoration: "none",
+              }}
+            >
+              <Text
+                textAlign="left"
+                fontSize="32px"
+                fontWeight={500}
+                color="black"
               >
-              Grocery
-            </Text>
-              </Link>
+                Grocery
+              </Text>
+            </Link>
             <CloseButton size={"32px"} onClick={onClose} />
           </HStack>
         </DrawerHeader>
@@ -108,7 +110,7 @@ const MobileNavbar = ({ onClose, isOpen }) => {
                         {navItem.label?.toLocaleUpperCase()}
                         <Icon as={FaChevronDown} h={3} w={3} mx={1.5}></Icon>
                       </MenuButton>
-                      <MenuList>
+                      {/* <MenuList>
                         {navItem.children.map((child) => (
                           <Link
                             key={child.label}
@@ -124,7 +126,7 @@ const MobileNavbar = ({ onClose, isOpen }) => {
                             <MenuItem>{child.label}</MenuItem>
                           </Link>
                         ))}
-                      </MenuList>
+                      </MenuList> */}
                     </Menu>
                   )}
                   <Divider my={2}></Divider>

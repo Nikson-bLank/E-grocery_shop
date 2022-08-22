@@ -21,8 +21,8 @@ const DesktopNavbar = () => {
         console.log(pathname === navItem.href);
         return (
           <Box key={navItem.label}>
-            <Popover trigger={"hover"} placement={"bottom-start"}>
-              <PopoverTrigger>
+            {/* <Popover trigger={"hover"} placement={"bottom-start"}>
+              <PopoverTrigger> */}
                 <Link
                   as={ReactRouterLink}
                   p={2}
@@ -39,8 +39,8 @@ const DesktopNavbar = () => {
                 >
                   {navItem.label?.toLocaleUpperCase()}
                 </Link>
-              </PopoverTrigger>
-              {navItem.children && (
+              {/* </PopoverTrigger> */}
+              {/* {navItem.children && (
                 <PopoverContent
                   border={0}
                   boxShadow={"xl"}
@@ -54,40 +54,40 @@ const DesktopNavbar = () => {
                     ))}
                   </Stack>
                 </PopoverContent>
-              )}
-            </Popover>
+              )} */}
+            {/* </Popover> */}
           </Box>
         );
       })}
     </Stack>
   );
 };
-const DesktopSubNav = ({ label, href }) => {
-  return (
-    <Link
-      as={ReactRouterLink}
-      to={href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      _hover={{
-        textDecoration: "none",
-        color: "#7fad39",
-      }}
-    >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
-          <Text
-            transition={"all .3s ease"}
-            _groupHover={{ color: "green" }}
-            fontWeight={500}
-          >
-            {label}
-          </Text>
-        </Box>
-      </Stack>
-    </Link>
-  );
-};
+// const DesktopSubNav = ({ label, href }) => {
+//   return (
+//     <Link
+//       as={ReactRouterLink}
+//       to={href}
+//       role={"group"}
+//       display={"block"}
+//       p={2}
+//       _hover={{
+//         textDecoration: "none",
+//         color: "#7fad39",
+//       }}
+//     >
+//       <Stack direction={"row"} align={"center"}>
+//         <Box>
+//           <Text
+//             transition={"all .3s ease"}
+//             _groupHover={{ color: "green" }}
+//             fontWeight={500}
+//           >
+//             {label}
+//           </Text>
+//         </Box>
+//       </Stack>
+//     </Link>
+//   );
+// };
 
 export default DesktopNavbar;

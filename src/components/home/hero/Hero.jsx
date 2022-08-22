@@ -10,6 +10,7 @@ import {
   IconButton,
   createIcon,
   useColorModeValue,
+  Container,
 } from "@chakra-ui/react";
 import {
   ButtonBack,
@@ -30,48 +31,46 @@ import HeroBanner from "./HeroBanner";
 
 export default function Hero() {
   return (
-    <Box width={"100%"} h="500">
-      <CarouselProvider
-        naturalSlideHeight={10}
-        naturalSlideWidth={10}
-        orientation="horizontal"
-        totalSlides={3}
-        visibleSlides={1}
-        step={1}
-        playDirection="forward"
-        isIntrinsicHeight
-        isPlaying
-      >
-        <Slider>
-          <Slide index={0}>
-            <HeroBanner
-              img={heroBanner_1}
-              headTitle={"Fresh Vegetable"}
-              title={"Vegetable 100% Organic"}
-              subTitle={"Free Pickup and Delivery Available"}
-              buttonLink={"/products"}
-            />
-          </Slide>
-          <Slide index={1}>
-            <HeroBanner
-              img={heroBanner_2}
-              headTitle={"Fresh Fruits"}
-              title={"Fruits 100% Organic"}
-              subTitle={"Free Pickup and Delivery Available"}
-              buttonLink={"/products"}
-            />
-          </Slide>
-          <Slide index={2}>
-            <HeroBanner
-              img={heroBanner_3}
-              headTitle={"Affordable Grocery"}
-              title={"100% Organic "}
-              subTitle={"Free Pickup and Delivery Available"}
-              buttonLink={"/products"}
-            />
-          </Slide>
-        </Slider>
-      </CarouselProvider>
-    </Box>
+    <CarouselProvider
+      naturalSlideHeight={10}
+      naturalSlideWidth={10}
+      orientation="horizontal"
+      totalSlides={3}
+      visibleSlides={1}
+      step={1}
+      playDirection="forward"
+      isIntrinsicHeight
+      isPlaying
+    >
+      <Slider>
+        <Slide index={0}>
+          <HeroBanner
+            img={heroBanner_1}
+            headTitle={"Fresh Vegetable"}
+            title={"Vegetable 100% Organic"}
+            subTitle={"Free Pickup and Delivery Available"}
+            buttonLink={"/products"}
+          />
+        </Slide>
+        <Slide index={1}>
+          <HeroBanner
+            img={heroBanner_2}
+            headTitle={"Fresh Fruits"}
+            title={"Fruits 100% Organic"}
+            subTitle={"Free Pickup and Delivery Available"}
+            buttonLink={"/products"}
+          />
+        </Slide>
+        <Slide index={2}>
+          <HeroBanner
+            img={heroBanner_3}
+            headTitle={"Affordable Grocery"}
+            title={"100% Organic "}
+            subTitle={"Free Pickup and Delivery Available"}
+            buttonLink={"/products"}
+          />
+        </Slide>
+      </Slider>
+    </CarouselProvider>
   );
 }

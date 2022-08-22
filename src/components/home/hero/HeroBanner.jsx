@@ -10,8 +10,7 @@ const HeroBanner = ({ img, headTitle, title, subTitle, buttonLink }) => {
       justifyContent={"space-between"}
       gap={10}
       position="relative"
-      w="100%"
-      h={"470px"}
+      height={"500px"}
     >
       <Box position="absolute" top={20} left={10}>
         <Flex
@@ -66,9 +65,8 @@ const HeroBanner = ({ img, headTitle, title, subTitle, buttonLink }) => {
 
       <Img
         src={img}
-        h={"100%"}
-        w="100%"
-        // objectFit={{ base: "contain", lg: "fill" }}
+        height={"500px"}
+        w={"100vw"}
       ></Img>
     </Flex>
   );
