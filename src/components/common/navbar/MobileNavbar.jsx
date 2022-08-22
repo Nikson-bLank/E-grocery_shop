@@ -1,68 +1,144 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
-import languageImage from "../../../images/language.png"
+import {
+  Box,
+  Center,
+  CloseButton,
+  Divider,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  Flex,
+  HStack,
+  Icon,
+  Link,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+import { FaHeart, FaShoppingCart, FaChevronDown, FaUser } from "react-icons/fa";
+import { Link as ReactRouterLink } from "react-router-dom";
+import { NAV_ITEMS } from "./navitem";
 
-const MobileNavbar = () => {
+const MobileNavbar = ({ onClose, isOpen }) => {
   return (
-    <>
-    <div className="humberger__menu__overlay"></div>
-    <div className="humberger__menu__wrapper">
-        <div className="humberger__menu__logo">
-            <a href="#" className="logo">V-Shop</a>
-        </div>
-        <div className="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i className="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i className="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div className="header__cart__price">item: <span>$150.00</span></div>
-        </div>
-        <div className="humberger__menu__widget">
-            <div className="header__top__right__language">
-                <img src={languageImage} alt="" />
-                <div>English</div>
-                <span className="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div className="header__top__right__auth">
-                <a href="#"><i className="fa fa-user"></i> Login</a>
-            </div>
-        </div>
-        <nav className="humberger__menu__nav mobile-menu">
-            <ul>
-                <li className="active"><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul className="header__menu__dropdown">
-                        <li><a href="#">Shop Details</a></li>
-                        <li><a href="#">Shoping Cart</a></li>
-                        <li><a href="#">Check Out</a></li>
-                        <li><a href="#">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div className="header__top__right__social">
-            <a href="#"><i className="fa fa-facebook"></i></a>
-            <a href="#"><i className="fa fa-twitter"></i></a>
-            <a href="#"><i className="fa fa-linkedin"></i></a>
-            <a href="#"><i className="fa fa-pinterest-p"></i></a>
-        </div>
-        <div className="humberger__menu__contact">
-            <ul>
-                <li><i className="fa fa-envelope"></i> therichposts@gmail.com</li>
-                <li>Free Shipping for all Order of $99</li>
-            </ul>
-        </div>
-    </div>
-    </>
-  )
-}
+    <Drawer placement={"left"} onClose={onClose} isOpen={isOpen}>
+      <DrawerOverlay />
+      <DrawerContent>
+        <DrawerHeader mt={10}>
+          <HStack spacing={"70px"} alignItems={"center"}>
+            <Link
+              as={ReactRouterLink}
+              to="/"
+              _hover={{
+                textDecoration: "none",
+              }}
+            >
+              <Text
+                textAlign="left"
+                fontSize="32px"
+                fontWeight={500}
+                color="black"
+              >
+                Grocery
+              </Text>
+            </Link>
+            <CloseButton size={"32px"} onClick={onClose} />
+          </HStack>
+        </DrawerHeader>
+        <DrawerBody>
+          <Stack justify={"start"} direction={"row"} spacing={4} align="center">
+            <Icon as={FaHeart} h={5} w={5}></Icon>
+            <Icon as={FaShoppingCart} h={5} w={5}></Icon>
+            <Stack direction={"row"} spacing={1} align="center">
+              <Text fontSize="sm" color={"#6f6f6f"}>
+                Item:
+              </Text>
+              <Text fontSize="sm" fontWeight={700}>
+                ₹1550
+              </Text>
+            </Stack>
+          </Stack>
+          <Flex mt={6}>
+            <Box mr={2}>Flag</Box>
+            <Menu>
+              <MenuButton aria-label="language-selector" fontWeight="normal">
+                English <Icon as={FaChevronDown} h={3} w={3}></Icon>
+              </MenuButton>
+              <MenuList>
+                <MenuItem>English</MenuItem>
+                <MenuItem>Spanish</MenuItem>
+              </MenuList>
+            </Menu>
+            <Center h="20px" mx={3}>
+              <Divider orientation="vertical"></Divider>
+            </Center>
+            <HStack>
+              <Icon offset={1} h={3} w={3} as={FaUser}></Icon>
+              <Link href="#" _hover={{ textDecoration: "none" }}>
+                Login
+              </Link>
+            </HStack>
+          </Flex>
+          <Flex flexDirection="column" gap={2} mt={6}>
+            {NAV_ITEMS.map((navItem) => {
+              return (
+                <Box key={navItem.label}>
+                  <Link
+                    as={ReactRouterLink}
+                    onClick={onClose}
+                    to={navItem.href ?? "#"}
+                    fontWeight={600}
+                    color={"#1c1c1c"}
+                    _hover={{
+                      textDecoration: "none",
+                      color: "#7fad39",
+                    }}
+                  >
+                    {!navItem.children && navItem.label?.toLocaleUpperCase()}
+                  </Link>
+                  {navItem.children && (
+                    <Menu>
+                      <MenuButton
+                        aria-label="language-selector"
+                        fontWeight="normal"
+                      >
+                        {navItem.label?.toLocaleUpperCase()}
+                        <Icon as={FaChevronDown} h={3} w={3} mx={1.5}></Icon>
+                      </MenuButton>
+                      {/* <MenuList>
+                        {navItem.children.map((child) => (
+                          <Link
+                            key={child.label}
+                            onClick={onClose}
+                            href={child.href ?? "#"}
+                            fontWeight={600}
+                            color={"#1c1c1c"}
+                            _hover={{
+                              textDecoration: "none",
+                              color: "#7fad39",
+                            }}
+                          >
+                            <MenuItem>{child.label}</MenuItem>
+                          </Link>
+                        ))}
+                      </MenuList> */}
+                    </Menu>
+                  )}
+                  <Divider my={2}></Divider>
+                </Box>
+              );
+            })}
+          </Flex>
+        </DrawerBody>
+        <DrawerFooter></DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
+};
 
-export default MobileNavbar
+export default MobileNavbar;
