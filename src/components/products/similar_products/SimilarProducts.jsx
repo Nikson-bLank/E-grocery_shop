@@ -12,7 +12,7 @@ import {
   Text,
   useMediaQuery,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useFetch from "../../../hooks/useFetch";
 import SingleSimilarProduct from "./SingleSimilarProduct";
 import SingleProductCard from "../product_lists/SingleProductCard";
@@ -27,17 +27,36 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import LoadingProductCarousel from "../../common/loading/LoadingProductCarousel";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const breakPoints = [
-  { width: 1, itemsToShow: 1, itemsToScroll: 1 },
-  { width: 550, itemsToShow: 2, itemsToScroll: 2 },
-  { width: 768, itemsToShow: 3, itemsToScroll: 3 },
-  { width: 1200, itemsToShow: 4, itemsToScroll: 4 },
-];
+// const breakPoints = [
+//   { width: 1, itemsToShow: 1, itemsToScroll: 1 },
+//   { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+//   { width: 768, itemsToShow: 3, itemsToScroll: 3 },
+//   { width: 1200, itemsToShow: 4, itemsToScroll: 4 },
+// ];
 
 const SimilarProducts = () => {
   const { isLoading, data: similarProducts } = useFetch("/products");
   // const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
   // const [isLargerThan380] = useMediaQuery("(min-width: 380px)");
+
+  const [noOfSlides, setNoOfSlides] = useState(4);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const { innerWidth } = window;
+      if (innerWidth < 540) return setNoOfSlides(1);
+      if (innerWidth < 900 && innerWidth > 540) return setNoOfSlides(2);
+      if (innerWidth < 1300 && innerWidth > 1024) return setNoOfSlides(3);
+      if (innerWidth > 1300) return setNoOfSlides(4);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
+
 
   if (isLoading) {
     return (
@@ -81,7 +100,7 @@ const SimilarProducts = () => {
           naturalSlideWidth={10}
           orientation="horizontal"
           totalSlides={similarProducts?.length}
-          visibleSlides={4}
+          visibleSlides={noOfSlides}
           step={1}
           isIntrinsicHeight
         >
@@ -104,7 +123,7 @@ const SimilarProducts = () => {
                     key={productData.id}
                     index={idx}
                   >
-                    <SingleProductCard productData={productData} />
+                    <SingleProductCard productData={productData}  />
                   </Slide>
                 );
               })}

@@ -11,18 +11,20 @@ const Home = () => {
 
   return (
     <Container maxW={{ base: "9xl", xl: "9xl" }}>
-        <Hero />
-        <Container maxW={{ base: "9xl", xl: "7xl" }}>
+      <Hero />
+      <Container maxW={{ base: "9xl", xl: "7xl" }}>
         <ProductSection
           productSectionTitle={"Popular Product"}
           productData={data}
           isLoading={isLoading}
         />
-        {/* <Banner /> */}
-        <Box>
-          <FilterProductBox />
-        </Box>
+        <Container maxW={{ base: "9xl", xl: "6xl" }}>
+          {/* <Banner /> */}
+          <Box>
+            <FilterProductBox />
+          </Box>
         </Container>
+      </Container>
     </Container>
   );
 };

@@ -1,8 +1,6 @@
 import {
-  Box,
   Center,
   Divider,
-  Flex,
   HStack,
   Icon,
   SimpleGrid,
@@ -104,6 +102,7 @@ const FilterProductBox = () => {
                 <SingleProductCard
                   key={productData.id}
                   productData={productData}
+                  isResponsive
                 />
               );
             })}

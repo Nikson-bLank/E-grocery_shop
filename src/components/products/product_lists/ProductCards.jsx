@@ -33,6 +33,7 @@ const ProductCards = () => {
           key={idx}
           productData={{ ...productData }}
           isLoading={isLoading}
+          isResponsive
         />
       ))}
     </SimpleGrid>

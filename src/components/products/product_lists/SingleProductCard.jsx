@@ -29,10 +29,9 @@ import { useNavigate, Link as ReactRouterLink } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-function SingleProductCard({ productData }) {
+function SingleProductCard({ productData, isResponsive }) {
   const navigate = useNavigate();
   const toast = useToast();
-
   const [isChecked, setIsChecked] = useState(false);
 
   const handleChecked = () => {
@@ -62,13 +61,12 @@ function SingleProductCard({ productData }) {
     <Box
       as={motion.div}
       layout
-      animate={{ opacity: 1, }}
-      initial={{opacity:0}}
-      exit={{opacity:0}}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
       transition={{
         opacity: { ease: "linear" },
         layout: { duration: 0.3 },
-        
       }}
       whileHover="hover"
       bg={"#fff"}
@@ -76,7 +74,6 @@ function SingleProductCard({ productData }) {
       shadow={{
         base: "xl",
         sm: "md",
-        
       }}
       position="relative"
       // transition={"all 0.3s ease"}
@@ -86,10 +83,12 @@ function SingleProductCard({ productData }) {
         // sm: "200px",
       }}
       flexDirection={{
-        base: "row",
+        base: isResponsive?"row":"column",
         sm: "column",
       }}
-      alignSelf={"baseline"}
+      alignSelf={{
+        base: "center",
+      }}
     >
       {productData.isNew && (
         <Badge
