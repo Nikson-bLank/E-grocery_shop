@@ -12,13 +12,13 @@ import SingleProductCard from "./SingleProductCard";
 import useFetch from "../../../hooks/useFetch";
 import LoadingCard from "../../common/loading/LoadingCard";
 
-const ProductCards = () => {
-  const { isLoading, data:productData } = useFetch("/products");
+const ProductCards = ({ isLoading, products }) => {
+  const { result: productData, image_url } = products;
 
-  const noOfBoxes = [1, 2, 3, 4, 5, 6, 7, 8];
+  console.log("card", products);
 
   if (isLoading) {
-    return <LoadingCard />
+    return <LoadingCard />;
   }
 
   return (
@@ -32,6 +32,7 @@ const ProductCards = () => {
         <SingleProductCard
           key={idx}
           productData={{ ...productData }}
+          imgUrl={image_url}
           isLoading={isLoading}
           isResponsive
         />

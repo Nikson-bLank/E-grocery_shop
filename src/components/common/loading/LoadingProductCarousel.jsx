@@ -89,8 +89,8 @@ const LoadingProductCarousel = ({ isResponsive }) => {
           <Icon as={FaChevronRight} aria-label="next products"></Icon>
         </ButtonNext>
       </HStack>
-      <ButtonBack>Back</ButtonBack>
-      <ButtonNext>Next</ButtonNext>
+      {/* <ButtonBack>Back</ButtonBack>
+      <ButtonNext>Next</ButtonNext> */}
     </CarouselProvider>
   );
 };

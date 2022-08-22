@@ -29,10 +29,20 @@ import { useNavigate, Link as ReactRouterLink } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-function SingleProductCard({ productData, isResponsive }) {
+import { cat_3 } from "../../../images/IMAGE_IMPORTS";
+
+function SingleProductCard({ productData, imgUrl, isResponsive }) {
   const navigate = useNavigate();
   const toast = useToast();
   const [isChecked, setIsChecked] = useState(false);
+  const [isImageError, setIsImageError] = useState(false);
+
+console.log("single", productData);
+  
+
+  const imageErrorHandler = (e) => {
+    setIsImageError(true);
+  };
 
   const handleChecked = () => {
     toast({
@@ -61,9 +71,9 @@ function SingleProductCard({ productData, isResponsive }) {
     <Box
       as={motion.div}
       layout
-      animate={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-      exit={{ opacity: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 0 }}
+      exit={{ opacity: 0, scale: 0 }}
       transition={{
         opacity: { ease: "linear" },
         layout: { duration: 0.3 },
@@ -83,7 +93,7 @@ function SingleProductCard({ productData, isResponsive }) {
         // sm: "200px",
       }}
       flexDirection={{
-        base: isResponsive?"row":"column",
+        base: isResponsive ? "row" : "column",
         sm: "column",
       }}
       alignSelf={{
@@ -106,9 +116,14 @@ function SingleProductCard({ productData, isResponsive }) {
       )}
 
       <Image
-        src={productData.imageURL}
-        alt={`Picture of ${productData.name}`}
+        src={isImageError ? cat_3 : imgUrl + productData.product_image}
+        // src={cat_3}
+        alt={`Picture of ${productData.product_name}`}
         alignSelf="center"
+        onError={imageErrorHandler}
+        // sx={{
+        //   aspectRatio: "1 / 1",
+        // }}
         h={150}
         w={{
           base: "50%",
@@ -132,9 +147,9 @@ function SingleProductCard({ productData, isResponsive }) {
             color: "#7fad39",
           }}
         >
-          {productData.name}
+          {productData.product_name}
           <Text fontSize={"sm"} color={"#888"}>
-            {productData.shortDescription}{" "}
+            {productData.tag || "fresh"}
           </Text>
         </Link>
         <HStack>
@@ -147,7 +162,7 @@ function SingleProductCard({ productData, isResponsive }) {
           <Box as="span" color={"#1c1c1c"} fontSize="md">
             ₹
           </Box>
-          {productData?.price}{" "}
+          {productData?.product_amount}{" "}
         </Box>
         <Stack direction={"row"}>
           <Icon

@@ -1,5 +1,6 @@
 import {
   Center,
+  Container,
   Divider,
   HStack,
   Icon,
@@ -38,7 +39,7 @@ const FilterProductBox = () => {
   }, [data, activeFilter]);
 
   return (
-    <>
+    <Container maxW={{ base: "9xl", xl: "6xl" }}>
       <VStack mb={5} spacing={5}>
         <Text align={"center"} fontSize={"32px"} fontWeight="700">
           Featured Products
@@ -109,7 +110,7 @@ const FilterProductBox = () => {
           </AnimatePresence>
         </SimpleGrid>
       )}
-    </>
+    </Container>
   );
 };
 

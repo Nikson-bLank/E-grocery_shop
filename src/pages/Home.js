@@ -19,7 +19,7 @@ const Home = () => {
           isLoading={isLoading}
         />
         <Container maxW={{ base: "9xl", xl: "6xl" }}>
-          {/* <Banner /> */}
+          <Banner />
           <Box>
             <FilterProductBox />
           </Box>

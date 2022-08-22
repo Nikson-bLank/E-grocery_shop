@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { FaHeart, FaShoppingCart, FaChevronDown, FaUser } from "react-icons/fa";
 import { Link as ReactRouterLink } from "react-router-dom";
-import { NAV_ITEMS } from "./navitem";
+import { NAV_ITEMS } from "./NavConfig";
 
 const MobileNavbar = ({ onClose, isOpen }) => {
   return (

@@ -12,8 +12,14 @@ import React from "react";
 import ProductCards from "../../components/products/product_lists/ProductCards";
 import DesktopProductFilter from "../../components/products/product_filters/DesktopProductFilter";
 import MobileProductFilter from "../../components/products/product_filters/MobileProductFilter";
+import useFetch from "../../hooks/useFetch";
+import { useParams } from "react-router-dom";
 
 const Products = () => {
+  const param = useParams();
+  const { isLoading, data } = useFetch(`/product/get_productby_categoryid/${param.id}`);
+  console.log("products", data);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -55,7 +61,7 @@ const Products = () => {
               <MobileProductFilter isOpen={isOpen} onClose={onClose} />
             </Box>
           </Flex>
-          <ProductCards />
+          <ProductCards isLoading={isLoading} products={data} />
         </Box>
       </Flex>
     </Container>

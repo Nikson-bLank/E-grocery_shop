@@ -10,7 +10,7 @@ const useFetch = (api) => {
 
   const fetchData = useCallback(async () => {
     setIsloading(true);
-    let response = await axios.get("https://62f6249ca3bce3eed7ba33e8.mockapi.io"+api);
+    let response = await axios.get("http://192.168.29.146:3333"+api);
     let result = await response.data;
     setIsloading(false);
     setData(result);

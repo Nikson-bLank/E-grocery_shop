@@ -9,10 +9,12 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Link as ReactRouterLink, useLocation } from "react-router-dom";
-import { NAV_ITEMS } from "./navitem";
+import { NAV_ITEMS } from "./NavConfig";
 
 const DesktopNavbar = () => {
   const { pathname } = useLocation();
+  
+
   console.log("path", pathname);
 
   return (
