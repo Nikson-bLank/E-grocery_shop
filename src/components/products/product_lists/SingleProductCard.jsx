@@ -37,9 +37,6 @@ function SingleProductCard({ productData, imgUrl, isResponsive }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isImageError, setIsImageError] = useState(false);
 
-console.log("single", productData);
-  
-
   const imageErrorHandler = (e) => {
     setIsImageError(true);
   };
@@ -78,7 +75,6 @@ console.log("single", productData);
         opacity: { ease: "linear" },
         layout: { duration: 0.3 },
       }}
-      whileHover="hover"
       bg={"#fff"}
       _hover={{ shadow: "xl" }}
       shadow={{
@@ -121,15 +117,15 @@ console.log("single", productData);
         alt={`Picture of ${productData.product_name}`}
         alignSelf="center"
         onError={imageErrorHandler}
-        // sx={{
-        //   aspectRatio: "1 / 1",
-        // }}
+        sx={{
+          aspectRatio: "1",
+        }}
         h={150}
         w={{
           base: "50%",
           sm: "100%",
         }}
-        objectFit="fill"
+        objectFit="cover"
         onClick={() => {
           navigate(`/product/${productData.id}`);
         }}

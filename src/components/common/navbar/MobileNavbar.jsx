@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import { FaHeart, FaShoppingCart, FaChevronDown, FaUser } from "react-icons/fa";
 import { Link as ReactRouterLink } from "react-router-dom";
-import { NAV_ITEMS } from "./NavConfig";
+import NavConfig from "./NavConfig";
 
 const MobileNavbar = ({ onClose, isOpen }) => {
   return (
@@ -85,7 +85,7 @@ const MobileNavbar = ({ onClose, isOpen }) => {
             </HStack>
           </Flex>
           <Flex flexDirection="column" gap={2} mt={6}>
-            {NAV_ITEMS.map((navItem) => {
+            {NavConfig().map((navItem) => {
               return (
                 <Box key={navItem.label}>
                   <Link
@@ -110,12 +110,13 @@ const MobileNavbar = ({ onClose, isOpen }) => {
                         {navItem.label?.toLocaleUpperCase()}
                         <Icon as={FaChevronDown} h={3} w={3} mx={1.5}></Icon>
                       </MenuButton>
-                      {/* <MenuList>
+                      <MenuList>
                         {navItem.children.map((child) => (
                           <Link
+                            as={ReactRouterLink}
                             key={child.label}
                             onClick={onClose}
-                            href={child.href ?? "#"}
+                            to={child.href ?? "#"}
                             fontWeight={600}
                             color={"#1c1c1c"}
                             _hover={{
@@ -126,7 +127,7 @@ const MobileNavbar = ({ onClose, isOpen }) => {
                             <MenuItem>{child.label}</MenuItem>
                           </Link>
                         ))}
-                      </MenuList> */}
+                      </MenuList>
                     </Menu>
                   )}
                   <Divider my={2}></Divider>

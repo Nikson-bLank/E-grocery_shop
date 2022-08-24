@@ -7,7 +7,7 @@ import Banner from "../components/home/promotion_banner/Banner";
 import useFetch from "../hooks/useFetch";
 
 const Home = () => {
-  const { isLoading, data } = useFetch("/products");
+  const { isLoading, data } = useFetch("/product/getproduct?page=0&size=10");
 
   return (
     <Container maxW={{ base: "9xl", xl: "9xl" }}>

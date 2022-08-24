@@ -34,18 +34,17 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 //   { width: 1200, itemsToShow: 4, itemsToScroll: 4 },
 // ];
 
-const SimilarProducts = () => {
-  const { isLoading, data: similarProducts } = useFetch("/products");
-  // const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
-  // const [isLargerThan380] = useMediaQuery("(min-width: 380px)");
+const SimilarProducts = ({slug}) => {
+  const { isLoading, data: similarProducts } = useFetch(`/product/get_similar_product/oil`);
+
 
   const [noOfSlides, setNoOfSlides] = useState(4);
 
   useEffect(() => {
     const handleResize = () => {
       const { innerWidth } = window;
-      if (innerWidth < 540) return setNoOfSlides(1);
-      if (innerWidth < 900 && innerWidth > 540) return setNoOfSlides(2);
+      if (innerWidth < 550) return setNoOfSlides(1);
+      if (innerWidth < 768 && innerWidth > 550) return setNoOfSlides(2);
       if (innerWidth < 1300 && innerWidth > 1024) return setNoOfSlides(3);
       if (innerWidth > 1300) return setNoOfSlides(4);
     };
@@ -72,7 +71,6 @@ const SimilarProducts = () => {
     );
   }
 
-  // const products = data?.slice(0,5)
   return (
     <Box mt={10}>
       <Text fontSize={"2xl"} fontWeight="500">
@@ -114,7 +112,7 @@ const SimilarProducts = () => {
                 width: "100%",
               }}
             >
-              {similarProducts.map((productData, idx) => {
+              {similarProducts?.result?.map((productData, idx) => {
                 return (
                   <Slide
                     style={{
@@ -124,6 +122,7 @@ const SimilarProducts = () => {
                     index={idx}
                   >
                     <SingleProductCard productData={productData}  />
+                    
                   </Slide>
                 );
               })}

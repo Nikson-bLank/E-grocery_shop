@@ -47,7 +47,7 @@ const ProductSlides = ({ productData }) => {
             minHeight: "350px",
           }}
         >
-          {productData.map((productData, idx) => {
+          {productData?.results?.map((productData, idx) => {
             return (
               <Slide
                 style={{

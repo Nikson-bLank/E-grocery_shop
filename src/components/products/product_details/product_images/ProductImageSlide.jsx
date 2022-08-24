@@ -1,30 +1,33 @@
-import { CarouselProvider, Slide, Slider, Image } from 'pure-react-carousel'
+import { CarouselProvider, Slide, Slider, Image } from "pure-react-carousel";
 
-
-const ProductImageSlide = ({images}) => {
+const ProductImageSlide = ({ images, imgURL }) => {
   return (
-   <CarouselProvider
-   naturalSlideHeight={50}
-   naturalSlideWidth={100}
-   totalSlides={5}
-   visibleSlides={4}
-   step={1}
-   orientation={'horizontal'}
-   >
-    <Slider>
-        {images.map((image,index)=>{
-            return  <Slide index={index} key={index} style={{
-              border:"1px solid black",
-              height:"50px",
-              width:"100px"
-            }}>
-            <Image src={image} alt="something"></Image>
+    <CarouselProvider
+      naturalSlideHeight={50}
+      naturalSlideWidth={100}
+      totalSlides={5}
+      visibleSlides={4}
+      step={1}
+      orientation={"horizontal"}
+    >
+      <Slider>
+        {images.map((image, index) => {
+          return (
+            <Slide
+              index={index}
+              key={index}
+              style={{
+                height: "70px",
+                width: "100px",
+              }}
+            >
+              <Image src={imgURL + image.product_image} alt="something"></Image>
             </Slide>
+          );
         })}
-       
-    </Slider>
-   </CarouselProvider>
-  )
-}
+      </Slider>
+    </CarouselProvider>
+  );
+};
 
-export default ProductImageSlide
+export default ProductImageSlide;

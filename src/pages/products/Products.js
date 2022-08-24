@@ -1,9 +1,7 @@
 import {
   Box,
   Button,
-  Center,
   Container,
-  Divider,
   Flex,
   Text,
   useDisclosure,
@@ -14,11 +12,15 @@ import DesktopProductFilter from "../../components/products/product_filters/Desk
 import MobileProductFilter from "../../components/products/product_filters/MobileProductFilter";
 import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
+import LoadingCard from "../../components/common/loading/LoadingCard";
 
 const Products = () => {
   const param = useParams();
-  const { isLoading, data } = useFetch(`/product/get_productby_categoryid/${param.id}`);
-  console.log("products", data);
+  const [page, setPage] = useState(0);
+  const { isLoading, data } = useFetch(
+    `/product/get_productby_categoryid?page=${page}&size=12&category_id=${param.id}`
+  );
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -61,7 +63,14 @@ const Products = () => {
               <MobileProductFilter isOpen={isOpen} onClose={onClose} />
             </Box>
           </Flex>
-          <ProductCards isLoading={isLoading} products={data} />
+          {isLoading ? <LoadingCard /> : <ProductCards products={data} />}
+          <button
+            onClick={() => {
+              setPage((prevState) => prevState + 1);
+            }}
+          >
+            next
+          </button>
         </Box>
       </Flex>
     </Container>

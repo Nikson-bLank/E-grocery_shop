@@ -5,6 +5,7 @@ const noOfBoxes = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const LoadingCard = () => {
   return (
+  
     <SimpleGrid
       columns={[1, 2, 3, 4]}
       placeItems="center"
@@ -19,7 +20,14 @@ const LoadingCard = () => {
           }}
           shadow={{ base: "xl", sm: "md" }}
           position="relative"
-          transition={"all 0.3s ease"}
+          
+          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0 }}
+          exit={{ opacity: 0, scale: 0 }}
+          transition={{
+            opacity: { ease: "linear" },
+            layout: { duration: 0.3 },
+          }}
           display="flex"
           w={{ base: "100%", sm: "200px" }}
           flexDirection={{ base: "row", sm: "column" }}

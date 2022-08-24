@@ -9,10 +9,9 @@ const PageRoute = () => {
   return (
     <Routes>
         <Route path="/" element={<Home />}></Route>
-        {/* <Route path="/products" element={<Products/>}></Route> */}
+        <Route path="/category/:id/products" element={<Products/>}></Route>
         <Route path="/product/:id" element={<ProductDetails/>}></Route>
-        <Route path="/category/:id" element={<Products/>}></Route>
-
+        {/* <Route path="/category/:id" element={<Products/>}></Route> */}
     </Routes>
   )
 }

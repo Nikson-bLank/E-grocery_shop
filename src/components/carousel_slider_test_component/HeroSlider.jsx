@@ -22,7 +22,6 @@ const HeroSlider = ({
   children
 }) => {
   const [noOfSlides, setNoOfSlides] = useState(4);
-console.log(children);
   return (
     <CarouselProvider
       naturalSlideHeight={naturalSlideHeight}

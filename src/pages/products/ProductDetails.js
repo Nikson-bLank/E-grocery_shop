@@ -13,14 +13,15 @@ import Loading from "../../components/common/loading/Loading";
 
 
 //image
-import {cat_1, cat_2, cat_3, cat_4, cat_5} from "../../images/IMAGE_IMPORTS"
+
 
 
 
 const ProductDetails = () => {
   const param = useParams();
-  const { isLoading, data } = useFetch(`/products/${param.id}`);
-  const images = [cat_1, cat_2, cat_3, cat_4, cat_5]  
+  const { isLoading, data } = useFetch(`/product/getproduct_details_with_mult_img/${param.id}`);
+  console.log("detail ", data);
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -48,7 +49,7 @@ const ProductDetails = () => {
     >
       <Box>
         <SimpleGrid columns={[1, 1, 2]} w="100%">
-          <ProductImage image={data?.imageURL} images={images} />
+          <ProductImage image={data?.result[0]?.product_image} imgURL={data?.image_url} images={data?.result[1]?.Image} />
           <Flex
             direction="column"
             justify="space-between"
@@ -73,7 +74,7 @@ const ProductDetails = () => {
         <ReviewDetails />
       </Box>
       <Box>
-        <SimilarProducts />
+        <SimilarProducts slug={data?.result[0]?.product_slug} />
       </Box>
     </Container>
   );
