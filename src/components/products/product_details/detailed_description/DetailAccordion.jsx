@@ -1,4 +1,4 @@
-import { AccordionButton, AccordionItem, AccordionPanel, Box, Icon } from '@chakra-ui/react'
+import { AccordionButton, AccordionItem, AccordionPanel, Box, Icon, Text } from '@chakra-ui/react'
 import React from 'react'
 
 import { FaPlus, FaMinus } from "react-icons/fa";
@@ -12,7 +12,7 @@ const DetailAccordion = ({heading, description}) => {
           <h2>
             <AccordionButton>
               <Box flex='1' textAlign='left'>
-                {heading}
+                <Text fontSize={"lg"} fontWeight={400}>{heading}</Text> 
               </Box>
               {isExpanded ? (
                 <Icon as={FaMinus}></Icon>

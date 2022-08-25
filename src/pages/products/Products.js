@@ -64,13 +64,6 @@ const Products = () => {
             </Box>
           </Flex>
           {isLoading ? <LoadingCard /> : <ProductCards products={data} />}
-          <button
-            onClick={() => {
-              setPage((prevState) => prevState + 1);
-            }}
-          >
-            next
-          </button>
         </Box>
       </Flex>
     </Container>

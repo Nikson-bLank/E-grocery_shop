@@ -15,8 +15,8 @@ const LoadingProductCarousel = ({ isResponsive }) => {
   useEffect(() => {
     const handleResize = () => {
       const { innerWidth } = window;
-      if (innerWidth < 540) return setNoOfSlides(1);
-      if (innerWidth < 900 && innerWidth > 540) return setNoOfSlides(2);
+      if (innerWidth < 550) return setNoOfSlides(1);
+      if (innerWidth < 768 && innerWidth > 550) return setNoOfSlides(2);
       if (innerWidth < 1300 && innerWidth > 1024) return setNoOfSlides(3);
       if (innerWidth > 1300) return setNoOfSlides(4);
     };

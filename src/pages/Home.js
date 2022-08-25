@@ -10,7 +10,7 @@ const Home = () => {
   const { isLoading, data } = useFetch("/product/getproduct?page=0&size=10");
 
   return (
-    <Container maxW={{ base: "9xl", xl: "9xl" }}>
+    <Container maxW={{ base: "9xl", xl: "9xl" }} display="flex" flexDirection={"column"}>
       <Hero />
       <Container maxW={{ base: "9xl", xl: "7xl" }}>
         <ProductSection

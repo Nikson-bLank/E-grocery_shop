@@ -45,13 +45,12 @@ const DetailedDescription = ({
             "EAN Code: 10000150 Country of origin: India.Sourced & Marketed by: Supermarket Grocery Supplies Pvt. Ltd, No. 7, Service Road, Off 100 Feet Road Indiranagar Landmark: Above HDFC Bank Bangalore, Karnataka 560071.Best before 3 days from delivery date For Queries/Feedback/Complaints, Contact our Customer Care Executive at: Phone: 1860 123 1000 | Address: Supermarket Grocery Supplies Pvt Ltd. No7, Service Road, Domlur 100 Feet Road, Indiranagar, Bangalore 560071. | Email: customerservice@bigbasket.com"
           }
         />
-        <DetailAccordion
+        {policy==="1"&&<DetailAccordion
           heading={"Variable weight policy"}
           description={
-            policy ||
             "Please note that the item(s) in this product may vary slightly in size and weight. Hence, the actual weight of the product delivered can have a small variance. You will be billed based on the actual weight during order processing."
           }
-        />
+        />}
       </Accordion>
     </Box>
   );

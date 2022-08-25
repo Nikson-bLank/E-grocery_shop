@@ -11,18 +11,13 @@ import SimilarProducts from "../../components/products/similar_products/SimilarP
 import useFetch from "../../hooks/useFetch";
 import Loading from "../../components/common/loading/Loading";
 
-
 //image
-
-
-
 
 const ProductDetails = () => {
   const param = useParams();
-  const { isLoading, data } = useFetch(`/product/getproduct_details_with_mult_img/${param.id}`);
-  console.log("detail ", data);
-
-
+  const { isLoading, data } = useFetch(
+    `/product/getproduct_details_with_mult_img/${param.id}`
+  );
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [param.id]);
@@ -49,7 +44,11 @@ const ProductDetails = () => {
     >
       <Box>
         <SimpleGrid columns={[1, 1, 2]} w="100%">
-          <ProductImage image={data?.result[0]?.product_image} imgURL={data?.image_url} images={data?.result[1]?.Image} />
+          <ProductImage
+            image={data?.result[0]?.product_image}
+            imgURL={data?.image_url}
+            images={data?.result[1]?.Image}
+          />
           <Flex
             direction="column"
             justify="space-between"
@@ -58,18 +57,23 @@ const ProductDetails = () => {
             gap={5}
           >
             <PriceDetails
-              name={data?.name}
-              price={data?.price}
-              discountPercent={data?.discountPercent}
-              discountPrice={data?.discountPrice}
+              name={data?.result[0]?.product_name}
+              brand={data?.result[0]?.brand}
+              price={data?.result[0]?.product_amount}
+              discountPercent={data?.result[0]?.product_discount_percent}
+              discountPrice={data?.result[0]?.product_discount_price}
             />
             <CartDetails />
-            <ProductDescription description={data?.description} />
+            <ProductDescription description={data?.result[0]?.description} />
           </Flex>
         </SimpleGrid>
         <DetailedDescription
-          name={data?.name}
-          description={data?.description}
+          name={data?.result[0]?.product_name}
+          benefits={data?.result[0]?.benefits}
+          description={data?.result[0]?.description}
+          storageAndUsage={data?.result[0]?.storage_and_usage}
+          policy={data?.result[0]?.is_weight_variable}
+          otherInfo={data?.result[0]?.other_product_info}
         />
         <ReviewDetails />
       </Box>

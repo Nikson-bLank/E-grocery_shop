@@ -125,7 +125,8 @@ function SingleProductCard({ productData, imgUrl, isResponsive }) {
           base: "50%",
           sm: "100%",
         }}
-        objectFit="cover"
+        // objectFit="fill"
+        objectPosition="25% 75%"
         onClick={() => {
           navigate(`/product/${productData.id}`);
         }}
