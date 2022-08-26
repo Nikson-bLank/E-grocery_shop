@@ -63,7 +63,7 @@ const Products = () => {
               <MobileProductFilter isOpen={isOpen} onClose={onClose} />
             </Box>
           </Flex>
-          {isLoading ? <LoadingCard /> : <ProductCards products={data} />}
+          {isLoading ? <LoadingCard /> : <ProductCards  products={data} />}
         </Box>
       </Flex>
     </Container>

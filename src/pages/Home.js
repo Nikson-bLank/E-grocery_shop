@@ -8,9 +8,8 @@ import useFetch from "../hooks/useFetch";
 
 const Home = () => {
   const { isLoading, data } = useFetch("/product/getproduct?page=0&size=10");
-
   return (
-    <Container maxW={{ base: "9xl", xl: "9xl" }} display="flex" flexDirection={"column"}>
+    <Container maxW={{ base: "9xl", xl: "9xl" }} display="flex" flexDirection={"column"} gap={10}>
       <Hero />
       <Container maxW={{ base: "9xl", xl: "7xl" }}>
         <ProductSection
@@ -18,10 +17,10 @@ const Home = () => {
           productData={data}
           isLoading={isLoading}
         />
-        <Container maxW={{ base: "9xl", xl: "6xl" }}>
+        <Container maxW={{ base: "9xl", xl: "6xl" }} display="flex" flexDirection={"column"} gap={10}>
           <Banner />
           <Box>
-            <FilterProductBox />
+            <FilterProductBox imageUrl={data?.image_url} />
           </Box>
         </Container>
       </Container>

@@ -5,11 +5,26 @@ import {
   AccordionPanel,
   Box,
   Checkbox,
+  HStack,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderMark,
+  RangeSliderThumb,
+  RangeSliderTrack,
+  SimpleGrid,
   Stack,
+  Tag,
+  Text,
 } from "@chakra-ui/react";
-import React from "react";
+import { useEffect, useState } from "react";
+import useFetch from "../../../hooks/useFetch";
 
 const FilterOptions = () => {
+  const { isLoading, data } = useFetch("/product/get_product_filter");
+  
+
+const brands = ["melon man", "fuji", "orange"]
+
   return (
     <>
       <AccordionItem>
@@ -23,21 +38,12 @@ const FilterOptions = () => {
         </h2>
         <AccordionPanel pb={4}>
           <Stack spacing={[1, 5]} direction={"column"}>
-            <Checkbox size="md" colorScheme="green">
-              Checkbox
-            </Checkbox>
-            <Checkbox size="md" colorScheme="green">
-              Checkbox
-            </Checkbox>
-            <Checkbox size="md" colorScheme="green">
-              Checkbox
-            </Checkbox>
-            <Checkbox size="md" colorScheme="green">
-              Checkbox
-            </Checkbox>
-            <Checkbox size="md" colorScheme="green">
-              Checkbox
-            </Checkbox>
+            {brands?.map((brand,index)=>{
+              return  <Checkbox size="md" colorScheme="green" key={index} >
+                 {brand}
+              </Checkbox>
+            })}
+            
           </Stack>
         </AccordionPanel>
       </AccordionItem>
@@ -51,21 +57,24 @@ const FilterOptions = () => {
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          <Stack spacing={[1, 5]} direction={"column"}>
+        <Stack spacing={[1, 5]} direction={"column"}>
             <Checkbox size="md" colorScheme="green">
-              Checkbox
+              ₹20 & less
             </Checkbox>
             <Checkbox size="md" colorScheme="green">
-              Checkbox
+              ₹20 - ₹100
             </Checkbox>
             <Checkbox size="md" colorScheme="green">
-              Checkbox
+              ₹100 - ₹200
             </Checkbox>
             <Checkbox size="md" colorScheme="green">
-              Checkbox
+             ₹300 - ₹400
             </Checkbox>
             <Checkbox size="md" colorScheme="green">
-              Checkbox
+             ₹400 - ₹500
+            </Checkbox>
+            <Checkbox size="md" colorScheme="green">
+              ₹501 & more
             </Checkbox>
           </Stack>
         </AccordionPanel>
@@ -80,21 +89,21 @@ const FilterOptions = () => {
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
-          <Stack spacing={[1, 5]} direction={"column"}>
+          <Stack spacing={[1, 5]} direction={"column-reverse"}>
             <Checkbox size="md" colorScheme="green">
-              Checkbox
+              10% or more
             </Checkbox>
             <Checkbox size="md" colorScheme="green">
-              Checkbox
+              20% or more
             </Checkbox>
             <Checkbox size="md" colorScheme="green">
-              Checkbox
+              30% or more
             </Checkbox>
             <Checkbox size="md" colorScheme="green">
-              Checkbox
+              40% or more
             </Checkbox>
             <Checkbox size="md" colorScheme="green">
-              Checkbox
+              50% or more
             </Checkbox>
           </Stack>
         </AccordionPanel>

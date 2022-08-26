@@ -34,7 +34,7 @@ const ProductDetails = () => {
       </Container>
     );
   }
-
+ console.log("data", data?.result[0]?.brand);
   return (
     <Container
       maxW={{

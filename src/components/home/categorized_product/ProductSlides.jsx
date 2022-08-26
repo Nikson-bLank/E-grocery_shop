@@ -7,7 +7,7 @@ import {
   Slider,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { Box, HStack, Icon } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import SingleProductCard from "../../products/product_lists/SingleProductCard";
 
@@ -33,7 +33,7 @@ const ProductSlides = ({ productData }) => {
       naturalSlideHeight={100}
       naturalSlideWidth={100}
       orientation="horizontal"
-      totalSlides={productData?.length}
+      totalSlides={productData?.result?.length}
       visibleSlides={noOfSlides}
       step={1}
       isIntrinsicHeight
@@ -47,16 +47,19 @@ const ProductSlides = ({ productData }) => {
             minHeight: "350px",
           }}
         >
-          {productData?.results?.map((productData, idx) => {
+          {productData?.result?.map((product, idx) => {
             return (
               <Slide
                 style={{
                   margin: "0px 20px ",
                 }}
-                key={productData.id}
+                key={product.id}
                 index={idx}
               >
-                <SingleProductCard productData={productData} />
+                <SingleProductCard
+                  productData={product}
+                  imgUrl={productData?.image_url}
+                />
               </Slide>
             );
           })}

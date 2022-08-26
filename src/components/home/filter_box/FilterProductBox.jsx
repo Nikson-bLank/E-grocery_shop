@@ -15,22 +15,22 @@ import LoadingCard from "../../common/loading/LoadingCard";
 import { FaRegFrownOpen } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
-const FilterProductBox = () => {
-  const { isLoading, data } = useFetch("/products");
+const FilterProductBox = ({imageUrl}) => {
+  const { isLoading, data } = useFetch("/product/get_featured_product/featured");
+  const { data:categories} = useFetch("/get_all_categories")
   const [activeFilter, setActiveFilter] = useState("all");
   const [filteredProduct, setFilteredProduct] = useState([]);
+  
 
   useEffect(() => {
-    const featuredData = data?.filter(
-      (filteredData) => filteredData.isFeatured === true
-    );
+    const featuredData = data?.result
 
     if (activeFilter === "all") {
       return setFilteredProduct(featuredData);
     }
 
     const filteredProduct = featuredData.filter(
-      (filteredProduct) => filteredProduct.category === activeFilter
+      (filteredProduct) => filteredProduct.category_id === activeFilter
     );
     if (filteredProduct.length < 1) {
       return setFilteredProduct([]);
@@ -58,32 +58,22 @@ const FilterProductBox = () => {
           >
             All
           </Text>
+          {categories?.result?.map((category)=>(
           <Text
             as={"button"}
-            className={activeFilter === "black" && "active_filter_category"}
-            onClick={() => setActiveFilter("black")}
+            key={category.id}
+            className={activeFilter === category.id && "active_filter_category"}
+            onClick={() => setActiveFilter(category.id)}
           >
-            Black
+            {category.category_name}
           </Text>
-          <Text
-            as={"button"}
-            className={activeFilter === "grey" && "active_filter_category"}
-            onClick={() => setActiveFilter("grey")}
-          >
-            Grey
-          </Text>
-          <Text
-            as={"button"}
-            className={activeFilter === "gold" && "active_filter_category"}
-            onClick={() => setActiveFilter("gold")}
-          >
-            Gold
-          </Text>
+          ))}
+          
         </HStack>
       </VStack>
       {isLoading ? (
         <LoadingCard />
-      ) : !isLoading && filteredProduct?.length < 1 ? (
+      ) : !isLoading && filteredProduct?.length < 0 ? (
         <Center color={"#ef3e3e"} p={10}>
           <Text align={"center"} fontSize={"24px"} fontWeight="500">
             Oops! no data found
@@ -103,6 +93,7 @@ const FilterProductBox = () => {
                 <SingleProductCard
                   key={productData.id}
                   productData={productData}
+                  imgUrl={imageUrl}
                   isResponsive
                 />
               );

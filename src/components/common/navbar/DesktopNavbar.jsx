@@ -1,24 +1,35 @@
 import {
   Box,
+  Icon,
   Link,
   Popover,
   PopoverContent,
   PopoverTrigger,
   Stack,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
+import { FaChevronDown } from "react-icons/fa";
 import { Link as ReactRouterLink, useLocation } from "react-router-dom";
 import NavConfig from "./NavConfig";
 
 const DesktopNavbar = () => {
   const { pathname } = useLocation();
+  const { onOpen, onClose, isOpen } = useDisclosure();
+
   return (
     <Stack direction={"row"} spacing={5}>
       {NavConfig().map((navItem) => {
         return (
           <Box key={navItem.label}>
-            <Popover trigger={"hover"} placement={"bottom-start"}>
+            <Popover
+              isOpen={isOpen}
+              onOpen={onOpen}
+              onClose={onClose}
+              trigger={"hover"}
+              placement={"bottom-start"}
+            >
               <PopoverTrigger>
                 <Link
                   as={ReactRouterLink}
@@ -35,6 +46,9 @@ const DesktopNavbar = () => {
                   className={pathname === navItem.href && "active-link"}
                 >
                   {navItem.label?.toLocaleUpperCase()}
+                  {navItem.children && (
+                    <Icon h={2} mx={1} w={2} as={FaChevronDown}></Icon>
+                  )}
                 </Link>
               </PopoverTrigger>
               {navItem.children && (
@@ -47,7 +61,11 @@ const DesktopNavbar = () => {
                 >
                   <Stack>
                     {navItem.children.map((child) => (
-                      <DesktopSubNav key={child.label} {...child} />
+                      <DesktopSubNav
+                        onClose={onClose}
+                        key={child.id}
+                        {...child}
+                      />
                     ))}
                   </Stack>
                 </PopoverContent>
@@ -59,11 +77,12 @@ const DesktopNavbar = () => {
     </Stack>
   );
 };
-const DesktopSubNav = ({ label, href }) => {
+const DesktopSubNav = ({ label, href, onClose }) => {
   return (
     <Link
       as={ReactRouterLink}
       to={href}
+      onClick={onClose}
       role={"group"}
       display={"block"}
       p={2}

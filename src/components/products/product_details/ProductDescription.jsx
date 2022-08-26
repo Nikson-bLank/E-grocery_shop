@@ -9,7 +9,7 @@ const ProductDescription = ({ description }) => {
       </Text>
       <p>
         {description ||
-          "Guava (/ˈɡwɑːvə/) is a common tropical fruit cultivated in many tropical and subtropical regions. The common guava Psidium guajava (lemon guava, apple guava) is a small tree in the myrtle family (Myrtaceae), native to Mexico, Central America, the Caribbean and northern South America."}
+          "description"}
       </p>
     </Box>
   );

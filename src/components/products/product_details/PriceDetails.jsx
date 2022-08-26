@@ -2,11 +2,14 @@ import { Box, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
-const PriceDetails = ({ name, price, discountPrice, discountPercent }) => {
+const PriceDetails = ({ name, price, discountPrice, discountPercent, brand }) => {
   return (
     <Box>
+      <Text fontSize="sm" color={"#888"}>
+        {brand || "Brand"}
+      </Text>
       <Text fontSize="4xl" color={"#1c1c1c"}>
-        {name || "Wayfarer Classic"}
+        {name || "Product Name"}
       </Text>
       <Box>
         <Text fontSize="xl" color={"#1c1c1c"}>

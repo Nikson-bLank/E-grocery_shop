@@ -81,7 +81,7 @@ export default function Footer() {
       justifyContent="center"
       alignItems="center"
       paddingTop={"70px"}
-      mt={10}
+      mt={20}
     >
       <Container maxW={{ base: "9xl", xl: "6xl" }}>
         <SimpleGrid columns={[1,1,1,3]} spacing={10}>

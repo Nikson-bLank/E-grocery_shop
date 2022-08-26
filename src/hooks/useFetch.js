@@ -26,7 +26,7 @@ const useFetch = (api) => {
     fetchData();
   }, [fetchData]);
 
-  return { isLoading, data, error };
+  return { isLoading, data, error, message };
 };
 
 export default useFetch;
