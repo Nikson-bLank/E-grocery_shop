@@ -35,7 +35,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 // ];
 
 const SimilarProducts = ({slug}) => {
-  const { isLoading, data: similarProducts } = useFetch(`/product/get_similar_product/oil`);
+  const { isLoading, data: similarProducts } = useFetch(`/product/getproduct?page=0&size=10`);
 
 
   const [noOfSlides, setNoOfSlides] = useState(4);

@@ -10,7 +10,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { Link as ReactRouterLink, useLocation } from "react-router-dom";
 import NavConfig from "./NavConfig";
 
@@ -24,9 +24,9 @@ const DesktopNavbar = () => {
         return (
           <Box key={navItem.label}>
             <Popover
-              isOpen={isOpen}
-              onOpen={onOpen}
-              onClose={onClose}
+              isOpen={navItem.children && isOpen}
+              onOpen={navItem.children && onOpen}
+              onClose={navItem.children && onClose}
               trigger={"hover"}
               placement={"bottom-start"}
             >
@@ -46,9 +46,12 @@ const DesktopNavbar = () => {
                   className={pathname === navItem.href && "active-link"}
                 >
                   {navItem.label?.toLocaleUpperCase()}
-                  {navItem.children && (
-                    <Icon h={2} mx={1} w={2} as={FaChevronDown}></Icon>
-                  )}
+                  {navItem.children &&
+                    (isOpen ? (
+                      <Icon h={2} mx={1} w={2} as={FaChevronUp}></Icon>
+                    ) : (
+                      <Icon h={2} mx={1} w={2} as={FaChevronDown}></Icon>
+                    ))}
                 </Link>
               </PopoverTrigger>
               {navItem.children && (
@@ -77,7 +80,8 @@ const DesktopNavbar = () => {
     </Stack>
   );
 };
-const DesktopSubNav = ({ label, href, onClose }) => {
+const DesktopSubNav = ({ label, href, onClose}) => {
+  const { pathname } = useLocation();
   return (
     <Link
       as={ReactRouterLink}
@@ -90,12 +94,13 @@ const DesktopSubNav = ({ label, href, onClose }) => {
         textDecoration: "none",
         color: "#7fad39",
       }}
+      className={pathname === href  && "active-link"}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
           <Text
             transition={"all .3s ease"}
-            _groupHover={{ color: "green" }}
+            // _groupHover={{ color: "green" }}
             fontWeight={500}
           >
             {label}

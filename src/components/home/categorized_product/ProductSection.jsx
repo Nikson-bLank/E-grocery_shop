@@ -1,4 +1,4 @@
-import { Box, Divider, Text, VStack } from "@chakra-ui/react";
+import { Box, Divider, Flex, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import LoadingProductCarousel from "../../common/loading/LoadingProductCarousel";
 import ProductSlides from "./ProductSlides";
@@ -15,7 +15,7 @@ const ProductSection = ({ productSectionTitle, productData, isLoading }) => {
         opacity={100}
         borderColor={"#7fad39"}
       ></Divider>
-      <Box w="100%">
+      <Box my={4}>
         {isLoading ? (
           <LoadingProductCarousel></LoadingProductCarousel>
         ) : (

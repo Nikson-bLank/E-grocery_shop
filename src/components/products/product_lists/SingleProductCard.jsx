@@ -31,6 +31,10 @@ import { motion } from "framer-motion";
 
 import { cat_3 } from "../../../images/IMAGE_IMPORTS";
 
+
+
+
+
 function SingleProductCard({ productData, imgUrl, isResponsive }) {
   const navigate = useNavigate();
   const toast = useToast();
@@ -146,7 +150,7 @@ function SingleProductCard({ productData, imgUrl, isResponsive }) {
       </Text>
           {productData.product_name}
           <Text fontSize={"sm"} color={"#555"}>
-            {productData.tag || "fresh"}
+            {productData.tag}
           </Text>
         </Link>
         <HStack>
