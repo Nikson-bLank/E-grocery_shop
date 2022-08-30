@@ -2,35 +2,38 @@ import {
     Center,
     Container,
     Divider,
-    HStack,
+    Flex,
     Icon,
     SimpleGrid,
     Text,
     VStack,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import useFetch from "../../../hooks/useFetch";
 import SingleProductCard from "../../products/product_lists/SingleProductCard";
 import LoadingCard from "../../common/loading/LoadingCard";
 import { FaRegFrownOpen } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
-const FilterProductBox = () => {
-    const { isLoading, data } = useFetch("/products");
+const FilterProductBox = ({ imageUrl }) => {
+    const { isLoading, data } = useFetch(
+        "/product/get_featured_product/featured"
+    );
+    const { data: categories } = useFetch("/get_all_categories");
     const [activeFilter, setActiveFilter] = useState("all");
     const [filteredProduct, setFilteredProduct] = useState([]);
+    console.log("filter length", filteredProduct?.length);
 
     useEffect(() => {
-        const featuredData = data?.filter(
-            (filteredData) => filteredData.isFeatured === true
-        );
+        const featuredData = data?.result;
 
         if (activeFilter === "all") {
             return setFilteredProduct(featuredData);
         }
 
         const filteredProduct = featuredData.filter(
-            (filteredProduct) => filteredProduct.category === activeFilter
+            (filteredProduct) => filteredProduct.category_id === activeFilter
         );
         if (filteredProduct.length < 1) {
             return setFilteredProduct([]);
@@ -50,9 +53,10 @@ const FilterProductBox = () => {
                     opacity={100}
                     borderColor={"#7fad39"}
                 ></Divider>
-                <HStack spacing={10}>
+                <Flex direction={"row"} gap={5} wrap={"wrap"}>
                     <Text
                         as={"button"}
+                        textAlign="left"
                         className={
                             activeFilter === "all" && "active_filter_category"
                         }
@@ -60,34 +64,21 @@ const FilterProductBox = () => {
                     >
                         All
                     </Text>
-                    <Text
-                        as={"button"}
-                        className={
-                            activeFilter === "black" && "active_filter_category"
-                        }
-                        onClick={() => setActiveFilter("black")}
-                    >
-                        Black
-                    </Text>
-                    <Text
-                        as={"button"}
-                        className={
-                            activeFilter === "grey" && "active_filter_category"
-                        }
-                        onClick={() => setActiveFilter("grey")}
-                    >
-                        Grey
-                    </Text>
-                    <Text
-                        as={"button"}
-                        className={
-                            activeFilter === "gold" && "active_filter_category"
-                        }
-                        onClick={() => setActiveFilter("gold")}
-                    >
-                        Gold
-                    </Text>
-                </HStack>
+                    {categories?.result?.map((category) => (
+                        <Text
+                            as={"button"}
+                            textAlign="left"
+                            key={category.id}
+                            className={
+                                activeFilter === category.id &&
+                                "active_filter_category"
+                            }
+                            onClick={() => setActiveFilter(category.id)}
+                        >
+                            {category.category_name}
+                        </Text>
+                    ))}
+                </Flex>
             </VStack>
             {isLoading ? (
                 <LoadingCard />
@@ -111,6 +102,7 @@ const FilterProductBox = () => {
                                 <SingleProductCard
                                     key={productData.id}
                                     productData={productData}
+                                    imgUrl={imageUrl}
                                     isResponsive
                                 />
                             );
@@ -120,6 +112,9 @@ const FilterProductBox = () => {
             )}
         </Container>
     );
+};
+FilterProductBox.propTypes = {
+    imageUrl: PropTypes.string.isRequired,
 };
 
 export default FilterProductBox;

@@ -1,25 +1,36 @@
 import {
     Box,
+    Icon,
     Link,
     Popover,
     PopoverContent,
     PopoverTrigger,
     Stack,
     Text,
+    useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { Link as ReactRouterLink, useLocation } from "react-router-dom";
 import NavConfig from "./NavConfig";
 
 const DesktopNavbar = () => {
     const { pathname } = useLocation();
+    const { onOpen, onClose, isOpen } = useDisclosure();
+
     return (
         <Stack direction={"row"} spacing={5}>
             {NavConfig().map((navItem) => {
                 return (
                     <Box key={navItem.label}>
-                        <Popover trigger={"hover"} placement={"bottom-start"}>
+                        <Popover
+                            isOpen={navItem.children && isOpen}
+                            onOpen={navItem.children && onOpen}
+                            onClose={navItem.children && onClose}
+                            trigger={"hover"}
+                            placement={"bottom-start"}
+                        >
                             <PopoverTrigger>
                                 <Link
                                     as={ReactRouterLink}
@@ -39,6 +50,22 @@ const DesktopNavbar = () => {
                                     }
                                 >
                                     {navItem.label?.toLocaleUpperCase()}
+                                    {navItem.children &&
+                                        (isOpen ? (
+                                            <Icon
+                                                h={2}
+                                                mx={1}
+                                                w={2}
+                                                as={FaChevronUp}
+                                            ></Icon>
+                                        ) : (
+                                            <Icon
+                                                h={2}
+                                                mx={1}
+                                                w={2}
+                                                as={FaChevronDown}
+                                            ></Icon>
+                                        ))}
                                 </Link>
                             </PopoverTrigger>
                             {navItem.children && (
@@ -52,7 +79,8 @@ const DesktopNavbar = () => {
                                     <Stack>
                                         {navItem.children.map((child) => (
                                             <DesktopSubNav
-                                                key={child.label}
+                                                onClose={onClose}
+                                                key={child.id}
                                                 {...child}
                                             />
                                         ))}
@@ -66,11 +94,13 @@ const DesktopNavbar = () => {
         </Stack>
     );
 };
-const DesktopSubNav = ({ label, href }) => {
+const DesktopSubNav = ({ label, href, onClose }) => {
+    const { pathname } = useLocation();
     return (
         <Link
             as={ReactRouterLink}
             to={href}
+            onClick={onClose}
             role={"group"}
             display={"block"}
             p={2}
@@ -78,12 +108,13 @@ const DesktopSubNav = ({ label, href }) => {
                 textDecoration: "none",
                 color: "#7fad39",
             }}
+            className={pathname === href && "active-link"}
         >
             <Stack direction={"row"} align={"center"}>
                 <Box>
                     <Text
                         transition={"all .3s ease"}
-                        _groupHover={{ color: "green" }}
+                        // _groupHover={{ color: "green" }}
                         fontWeight={500}
                     >
                         {label}
@@ -96,6 +127,6 @@ const DesktopSubNav = ({ label, href }) => {
 DesktopSubNav.propTypes = {
     label: PropTypes.string,
     href: PropTypes.string,
+    onClose: PropTypes.func
 };
-
 export default DesktopNavbar;

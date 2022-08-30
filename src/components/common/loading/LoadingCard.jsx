@@ -1,7 +1,7 @@
 import { Box, SimpleGrid, Skeleton, SkeletonText } from "@chakra-ui/react";
 import React from "react";
 
-const noOfBoxes = [1, 2, 3, 4, 5, 6, 7, 8];
+const noOfBoxes = [1, 2, 3, 4, 6, 7, 8];
 
 const LoadingCard = () => {
     return (

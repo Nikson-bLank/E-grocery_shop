@@ -31,10 +31,10 @@ const ProductSlides = ({ productData }) => {
 
     return (
         <CarouselProvider
-            naturalSlideHeight={100}
-            naturalSlideWidth={100}
+            naturalSlideHeight={400}
+            naturalSlideWidth={400}
             orientation="horizontal"
-            totalSlides={productData?.length}
+            totalSlides={productData?.result?.length}
             visibleSlides={noOfSlides}
             step={1}
             isIntrinsicHeight
@@ -45,19 +45,22 @@ const ProductSlides = ({ productData }) => {
                 </ButtonBack>
                 <Slider
                     style={{
-                        minHeight: "350px",
+                        minHeight: "360px",
                     }}
                 >
-                    {productData?.results?.map((productData, idx) => {
+                    {productData?.result?.map((product, idx) => {
                         return (
                             <Slide
                                 style={{
                                     margin: "0px 20px ",
                                 }}
-                                key={productData.id}
+                                key={product.id}
                                 index={idx}
                             >
-                                <SingleProductCard productData={productData} />
+                                <SingleProductCard
+                                    productData={product}
+                                    imgUrl={productData?.image_url}
+                                />
                             </Slide>
                         );
                     })}

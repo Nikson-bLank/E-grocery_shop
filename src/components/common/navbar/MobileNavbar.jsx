@@ -132,7 +132,7 @@ const MobileNavbar = ({ onClose, isOpen }) => {
                                                     (child) => (
                                                         <Link
                                                             as={ReactRouterLink}
-                                                            key={child.label}
+                                                            key={child.id}
                                                             onClick={onClose}
                                                             to={
                                                                 child.href ??

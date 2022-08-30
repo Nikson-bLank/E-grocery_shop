@@ -17,11 +17,10 @@ import LoadingCard from "../../components/common/loading/LoadingCard";
 
 const Products = () => {
     const param = useParams();
-    const [page, setPage] = useState(0);
+    const [page] = useState(0);
     const { isLoading, data } = useFetch(
         `/product/get_productby_categoryid?page=${page}&size=12&category_id=${param.id}`
     );
-
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
@@ -71,13 +70,6 @@ const Products = () => {
                     ) : (
                         <ProductCards products={data} />
                     )}
-                    <button
-                        onClick={() => {
-                            setPage((prevState) => prevState + 1);
-                        }}
-                    >
-                        next
-                    </button>
                 </Box>
             </Flex>
         </Container>

@@ -38,9 +38,8 @@ function SingleProductCard({ productData, imgUrl, isResponsive }) {
     const [isChecked, setIsChecked] = useState(false);
     const [isImageError, setIsImageError] = useState(false);
 
-    const imageErrorHandler = (e) => {
+    const imageErrorHandler = () => {
         setIsImageError(true);
-        console.log(e);
     };
 
     const handleChecked = () => {
@@ -84,7 +83,6 @@ function SingleProductCard({ productData, imgUrl, isResponsive }) {
                 sm: "md",
             }}
             position="relative"
-            // transition={"all 0.3s ease"}
             display="flex"
             w={{
                 base: "100%",
@@ -115,7 +113,6 @@ function SingleProductCard({ productData, imgUrl, isResponsive }) {
 
             <Image
                 src={isImageError ? cat_3 : imgUrl + productData.product_image}
-                // src={cat_3}
                 alt={`Picture of ${productData.product_name}`}
                 alignSelf="center"
                 onError={imageErrorHandler}
@@ -124,10 +121,10 @@ function SingleProductCard({ productData, imgUrl, isResponsive }) {
                 }}
                 h={150}
                 w={{
-                    base: "50%",
+                    base: isResponsive ? "50%" : "100%",
                     sm: "100%",
                 }}
-                objectFit="cover"
+                objectFit={"cover"}
                 onClick={() => {
                     navigate(`/product/${productData.id}`);
                 }}
@@ -145,9 +142,12 @@ function SingleProductCard({ productData, imgUrl, isResponsive }) {
                         color: "#7fad39",
                     }}
                 >
+                    <Text fontSize="xs" color={"#888"}>
+                        {productData.brand}
+                    </Text>
                     {productData.product_name}
-                    <Text fontSize={"sm"} color={"#888"}>
-                        {productData.tag || "fresh"}
+                    <Text fontSize={"sm"} color={"#555"}>
+                        {productData.tag}
                     </Text>
                 </Link>
                 <HStack>
@@ -165,7 +165,7 @@ function SingleProductCard({ productData, imgUrl, isResponsive }) {
                     <Box as="span" color={"#1c1c1c"} fontSize="md">
                         ₹
                     </Box>
-                    {productData?.product_amount}{" "}
+                    {productData?.product_amount}
                 </Box>
                 <Stack direction={"row"}>
                     <Icon
