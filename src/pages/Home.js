@@ -1,4 +1,4 @@
-import { Box, Container,} from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import React from "react";
 import ProductSection from "../components/home/categorized_product/ProductSection";
 import FilterProductBox from "../components/home/filter_box/FilterProductBox";
@@ -16,24 +16,25 @@ const Home = () => {
             gap={10}
         >
             <Hero />
-            <ProductSection
+            <Container maxW={{ base: "9xl", xl: "6xl" }}>
+                <ProductSection
                     productSectionTitle={"Popular Product"}
                     productData={data}
                     isLoading={isLoading}
                 />
+            </Container>
 
-                <Container
-                    maxW={{ base: "9xl", xl: "6xl" }}
-                    display="flex"
-                    flexDirection={"column"}
-                    gap={10}
-                >
-                    <Banner />
-                    <Box>
-                        <FilterProductBox imageUrl={data?.image_url} />
-                    </Box>
-                </Container>
-           
+            <Container
+                maxW={{ base: "9xl", xl: "6xl" }}
+                display="flex"
+                flexDirection={"column"}
+                gap={10}
+            >
+                <Banner />
+                <Box>
+                    <FilterProductBox imageUrl={data?.image_url} />
+                </Box>
+            </Container>
         </Container>
     );
 };

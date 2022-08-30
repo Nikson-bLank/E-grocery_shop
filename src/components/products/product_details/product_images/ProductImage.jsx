@@ -1,17 +1,71 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, HStack, Icon, Image } from "@chakra-ui/react";
 import ProductImageSlide from "./ProductImageSlide";
 import { cat_3 } from "../../../../images/IMAGE_IMPORTS";
 import { useState } from "react";
-
+import {
+    ButtonBack,
+    ButtonNext,
+    CarouselProvider,
+    Slide,
+    Slider,
+} from "pure-react-carousel";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 const ProductImage = ({ image, imgURL, images }) => {
     const [isImageError, setIsImageError] = useState(false);
     const imageErrorHandler = (e) => {
         setIsImageError(true);
     };
 
+    const multipleImages = [{ product_image: image }, ...images];
+    console.log("multiple", multipleImages);
+    // console.log("Images", images);
+    // console.log("Image", image);
+
     return (
         <Box>
-            <Image
+            <CarouselProvider
+                naturalSlideHeight={50}
+                naturalSlideWidth={50}
+                totalSlides={images.length + 1}
+                visibleSlides={1}
+                step={1}
+                orientation={"horizontal"}
+                interval={3000}
+                isIntrinsicHeight
+                isPlaying
+            >
+                <HStack>
+                    <ButtonBack>
+                        <FaChevronLeft />
+                    </ButtonBack>
+                    <Slider>
+                        {multipleImages.map((image, index) => {
+                            return (
+                                <Slide
+                                    index={index}
+                                    key={index}
+                                    style={{
+                                        height: "560px",
+                                        width: "560px",
+                                    }}
+                                >
+                                    <Image
+                                        src={imgURL + image.product_image}
+                                        alt="Product Images"
+                                        height={"560px"}
+                                        width="100%"
+                                    ></Image>
+                                </Slide>
+                            );
+                        })}
+                    </Slider>
+                    <ButtonNext>
+                        <FaChevronRight />
+                    </ButtonNext>
+                </HStack>
+            </CarouselProvider>
+
+            {/* <Image
                 w="100%"
                 h="500px"
                 objectFit={"fill"}
@@ -26,7 +80,7 @@ const ProductImage = ({ image, imgURL, images }) => {
                 borderWidth={1}
             >
                 <ProductImageSlide images={images} imgURL={imgURL} />
-            </Flex>
+            </Flex> */}
         </Box>
     );
 };

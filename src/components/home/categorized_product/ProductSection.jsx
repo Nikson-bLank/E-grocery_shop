@@ -15,7 +15,7 @@ const ProductSection = ({ productSectionTitle, productData, isLoading }) => {
         opacity={100}
         borderColor={"#7fad39"}
       ></Divider>
-      <Box my={4}>
+      <Box w="100%">
         {isLoading ? (
           <LoadingProductCarousel></LoadingProductCarousel>
         ) : (
