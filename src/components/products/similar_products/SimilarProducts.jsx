@@ -1,5 +1,5 @@
-import { Box, Divider, HStack, Icon, Text } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Box, Divider, HStack, Icon, Text, useMediaQuery } from "@chakra-ui/react";
+import React from "react";
 import PropTypes from "prop-types";
 import useFetch from "../../../hooks/useFetch";
 // import SingleSimilarProduct from "./SingleSimilarProduct";
@@ -26,23 +26,13 @@ const SimilarProducts = ({ slug }) => {
     const { isLoading, data: similarProducts } = useFetch(
         `/product/getproduct?page=${0}&size=10`
     );
+    const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
+    const [isLargerThan720] = useMediaQuery("(min-width: 720px)");
+    const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
 
-    const [noOfSlides, setNoOfSlides] = useState(4);
     console.log("slug for similar product->",slug);
 
-    useEffect(() => {
-        const handleResize = () => {
-            const { innerWidth } = window;
-            if (innerWidth < 550) return setNoOfSlides(1);
-            if (innerWidth < 768 && innerWidth > 550) return setNoOfSlides(2);
-            if (innerWidth < 1300 && innerWidth > 1024) return setNoOfSlides(3);
-            if (innerWidth > 1300) return setNoOfSlides(4);
-        };
-        window.addEventListener("resize", handleResize);
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+   
 
     if (isLoading) {
         return (
@@ -85,7 +75,15 @@ const SimilarProducts = ({ slug }) => {
                     naturalSlideWidth={100}
                     orientation="horizontal"
                     totalSlides={similarProducts?.result?.length}
-                    visibleSlides={noOfSlides}
+                    visibleSlides={
+                        isLargerThan1024
+                            ? 4
+                            : isLargerThan720
+                                ? 3
+                                : isLargerThan480
+                                    ? 2
+                                    : 1
+                    }
                     step={1}
                     isIntrinsicHeight
                 >

@@ -38,7 +38,7 @@ const ProductImageSlide = ({ images, imgURL }) => {
 
 ProductImageSlide.propTypes = {
     images: PropTypes.array,
-    imgURL: PropTypes.string.isRequired,
+    imgURL: PropTypes.string,
 };
 
 export default ProductImageSlide;

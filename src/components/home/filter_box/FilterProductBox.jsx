@@ -8,7 +8,7 @@ import {
     Text,
     VStack,
 } from "@chakra-ui/react";
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import useFetch from "../../../hooks/useFetch";
 import SingleProductCard from "../../products/product_lists/SingleProductCard";
@@ -83,7 +83,18 @@ const FilterProductBox = ({ imageUrl }) => {
             {isLoading ? (
                 <LoadingCard />
             ) : !isLoading && filteredProduct?.length < 1 ? (
-                <Center color={"#ef3e3e"} p={10}>
+                <Center
+                    as={motion.div}
+                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0 }}
+                    exit={{ opacity: 0, scale: 0 }}
+                    transition={{
+                        opacity: { ease: "linear" },
+                        layout: { duration: 0.5 },
+                    }}
+                    color={"#ef3e3e"}
+                    p={10}
+                >
                     <Text align={"center"} fontSize={"24px"} fontWeight="500">
                         Oops! no data found
                     </Text>
@@ -114,7 +125,7 @@ const FilterProductBox = ({ imageUrl }) => {
     );
 };
 FilterProductBox.propTypes = {
-    imageUrl: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string,
 };
 
 export default FilterProductBox;

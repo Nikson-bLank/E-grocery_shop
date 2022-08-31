@@ -1,4 +1,14 @@
-import { Box, Container, Flex, SimpleGrid } from "@chakra-ui/react";
+import {
+    Box,
+    Container,
+    Flex,
+    SimpleGrid,
+    Text,
+    Icon,
+    Center,
+} from "@chakra-ui/react";
+import { FaRegTimesCircle } from "react-icons/fa";
+import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import React, { useEffect } from "react";
 import ProductImage from "../../components/products/product_details/product_images/ProductImage";
@@ -15,7 +25,7 @@ import Loading from "../../components/common/loading/Loading";
 
 const ProductDetails = () => {
     const param = useParams();
-    const { isLoading, data } = useFetch(
+    const { isLoading, data, error } = useFetch(
         `/product/getproduct_details_with_mult_img/${param.id}`
     );
     useEffect(() => {
@@ -34,7 +44,28 @@ const ProductDetails = () => {
             </Container>
         );
     }
-    console.log("imgdata", data?.result[1]?.Image);
+    if (error) {
+        return (
+            <Center
+                as={motion.div}
+                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{
+                    opacity: { ease: "linear" },
+                    layout: { duration: 0.5 },
+                }}
+                color={"#ef3e3e"}
+                p={10}
+            >
+                <Text align={"center"} fontSize={"24px"} fontWeight="500">
+                    Oops! Something went Wrong!
+                </Text>
+                <Icon as={FaRegTimesCircle} h={10} w={10} mx={1}></Icon>
+            </Center>
+        );
+    }
+
     return (
         <Container
             maxW={{

@@ -3,12 +3,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FaRegFrownOpen } from "react-icons/fa";
 import SingleProductCard from "./SingleProductCard";
+import { AnimatePresence, motion } from "framer-motion";
 const ProductCards = ({ products }) => {
     const { result: productData, image_url } = products;
 
-    if (!productData) {
+    if (!productData || productData.length === 0) {
         return (
-            <Center color={"#ef3e3e"} p={10}>
+            <Center
+                as={motion.div}
+                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{
+                    opacity: { ease: "linear" },
+                    layout: { duration: 0.5 },
+                }}
+                color={"#ef3e3e"}
+                p={10}
+            >
                 <Text align={"center"} fontSize={"24px"} fontWeight="500">
                     Oops! no data found
                 </Text>
@@ -24,20 +36,22 @@ const ProductCards = ({ products }) => {
             spacingX="10px"
             spacingY="20px"
         >
-            {productData?.map((productData, idx) => (
-                <SingleProductCard
-                    key={idx}
-                    productData={{ ...productData }}
-                    imgUrl={image_url}
-                    isResponsive
-                />
-            ))}
+            <AnimatePresence>
+                {productData?.map((productData, idx) => (
+                    <SingleProductCard
+                        key={idx}
+                        productData={{ ...productData }}
+                        imgUrl={image_url}
+                        isResponsive
+                    />
+                ))}
+            </AnimatePresence>
         </SimpleGrid>
     );
 };
 
 ProductCards.propTypes = {
-    products: PropTypes.array
+    products: PropTypes.any,
 };
 
 export default ProductCards;

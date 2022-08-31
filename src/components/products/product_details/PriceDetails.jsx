@@ -41,9 +41,9 @@ const PriceDetails = ({
 
 PriceDetails.propTypes = {
     name: PropTypes.string,
-    price: PropTypes.string,
-    discountPrice: PropTypes.string,
-    discountPercent: PropTypes.string,
+    price: PropTypes.number,
+    discountPrice: PropTypes.number,
+    discountPercent: PropTypes.number,
     brand: PropTypes.string,
 };
 

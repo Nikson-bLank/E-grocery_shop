@@ -29,7 +29,7 @@ const ProductSection = ({ productSectionTitle, productData, isLoading }) => {
 ProductSection.propTypes = {
     isLoading: PropTypes.bool,
     productSectionTitle: PropTypes.string,
-    productData: PropTypes.array,
+    productData: PropTypes.any,
 };
 
 export default ProductSection;

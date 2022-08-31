@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+/* eslint-disable  */
+
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {
     ButtonBack,
@@ -8,26 +11,16 @@ import {
     Slider,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { HStack, Icon } from "@chakra-ui/react";
+import { HStack, Icon, useMediaQuery } from "@chakra-ui/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import SingleProductCard from "../../products/product_lists/SingleProductCard";
 
 const ProductSlides = ({ productData }) => {
-    const [noOfSlides, setNoOfSlides] = useState(4);
 
-    useEffect(() => {
-        const handleResize = () => {
-            const { innerWidth } = window;
-            if (innerWidth < 540) return setNoOfSlides(1);
-            if (innerWidth < 900 && innerWidth > 540) return setNoOfSlides(2);
-            if (innerWidth < 1300 && innerWidth > 1024) return setNoOfSlides(3);
-            if (innerWidth > 1300) return setNoOfSlides(4);
-        };
-        window.addEventListener("resize", handleResize);
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+    const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
+    const [isLargerThan720] = useMediaQuery("(min-width: 720px)");
+    const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
+
 
     return (
         <CarouselProvider
@@ -35,13 +28,24 @@ const ProductSlides = ({ productData }) => {
             naturalSlideWidth={400}
             orientation="horizontal"
             totalSlides={productData?.result?.length}
-            visibleSlides={noOfSlides}
+            visibleSlides={
+                isLargerThan1024
+                    ? 4
+                    : isLargerThan720
+                    ? 3
+                    : isLargerThan480
+                    ? 2
+                    : 1
+            }
             step={1}
             isIntrinsicHeight
         >
             <HStack>
                 <ButtonBack>
-                    <Icon as={FaChevronLeft} aria-label="next products"></Icon>
+                    <Icon
+                        as={FaChevronLeft}
+                        aria-label="previous products"
+                    ></Icon>
                 </ButtonBack>
                 <Slider
                     style={{
@@ -74,7 +78,7 @@ const ProductSlides = ({ productData }) => {
     );
 };
 ProductSlides.propTypes = {
-    productData: PropTypes.object,
+    productData: PropTypes.any,
 };
 
 export default ProductSlides;

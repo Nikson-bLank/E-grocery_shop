@@ -34,6 +34,7 @@ const ProductImage = ({ image, imgURL, images }) => {
                 interval={3000}
                 isIntrinsicHeight
                 isPlaying
+                infinite
             >
                 <HStack>
                     <ButtonBack>
@@ -46,14 +47,15 @@ const ProductImage = ({ image, imgURL, images }) => {
                                     index={index}
                                     key={index}
                                     style={{
-                                        height: "560px",
+                                        height: "400px",
                                         width: "560px",
                                     }}
                                 >
                                     <Image
                                         src={imgURL + image.product_image}
                                         alt="Product Images"
-                                        height={"560px"}
+                                        objectFit={"fill"}
+                                        height={"400px"}
                                         width="100%"
                                     ></Image>
                                 </Slide>
@@ -64,6 +66,22 @@ const ProductImage = ({ image, imgURL, images }) => {
                         <FaChevronRight />
                     </ButtonNext>
                 </HStack>
+                {/* <Center my={2}>
+                    {multipleImages?.slice(0, 5)?.map((images, index) => {
+                        return (
+                            <Image
+                                key={index}
+                                h={"50px"}
+                                w={"50px"}
+                                mx={2}
+                                _hover={{
+                                    cursor: "pointer",
+                                }}
+                                src={imgURL + images.product_image}
+                            ></Image>
+                        );
+                    })}
+                </Center> */}
             </CarouselProvider>
 
             {/* <Image
@@ -89,7 +107,7 @@ const ProductImage = ({ image, imgURL, images }) => {
 ProductImage.propTypes = {
     image: PropTypes.string,
     images: PropTypes.array,
-    imgURL: PropTypes.string.isRequired,
+    imgURL: PropTypes.string,
 };
 
 export default ProductImage;

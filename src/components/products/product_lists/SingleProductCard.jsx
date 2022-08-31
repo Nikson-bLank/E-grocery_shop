@@ -198,7 +198,7 @@ function SingleProductCard({ productData, imgUrl, isResponsive }) {
 }
 
 SingleProductCard.propTypes = {
-    productData: PropTypes.object,
+    productData: PropTypes.any,
     imgUrl: PropTypes.string,
     isResponsive: PropTypes.bool,
 };
