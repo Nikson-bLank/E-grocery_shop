@@ -22,9 +22,6 @@ import LoadingCard from "../../components/common/loading/LoadingCard";
 const Products = () => {
     const param = useParams();
     const [page] = useState(0);
-    // const { isLoading, data } = useFetch(
-    //     `/product/get_productby_categoryid?page=${page}&size=12&category_id=${param.id}`
-    // );
     const { status, response, error } = useAxiosFetch(
         `/product/get_productby_categoryid?page=${page}&size=8&category_id=${param.id}`
     );
@@ -32,25 +29,27 @@ const Products = () => {
     console.log(error);
     console.log(response);
 
-    const errorComponent = (
-        <Center
-            as={motion.div}
-            animate={{ opacity: 1, scale: 1 }}
-            initial={{ opacity: 0, scale: 0 }}
-            exit={{ opacity: 0, scale: 0 }}
-            transition={{
-                opacity: { ease: "linear" },
-                layout: { duration: 0.5 },
-            }}
-            color={"#ef3e3e"}
-            p={10}
-        >
-            <Text align={"center"} fontSize={"24px"} fontWeight="500">
-                Oops! Something went Wrong!
-            </Text>
-            <Icon as={FaRegTimesCircle} h={10} w={10} mx={1}></Icon>
-        </Center>
-    );
+    if (status === "rejected") {
+        return (
+            <Center
+                as={motion.div}
+                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{
+                    opacity: { ease: "linear" },
+                    layout: { duration: 0.5 },
+                }}
+                color={"#ef3e3e"}
+                p={10}
+            >
+                <Text align={"center"} fontSize={"24px"} fontWeight="500">
+                    Oops! Something went Wrong!
+                </Text>
+                <Icon as={FaRegTimesCircle} h={10} w={10} mx={1}></Icon>
+            </Center>
+        );
+    }
 
     return (
         <Container maxW={{ base: "9xl", xl: "6xl" }}>
@@ -96,10 +95,8 @@ const Products = () => {
                     </Flex>
                     {status === "idle" ? (
                         <LoadingCard />
-                    ) : status === "resolved" ? (
-                        <ProductCards products={response} />
                     ) : (
-                        errorComponent
+                        <ProductCards products={response} />
                     )}
                 </Box>
             </Flex>

@@ -1,12 +1,16 @@
-import { Box, HStack, Image } from "@chakra-ui/react";
+/* eslint-disable no-unused-vars */
+import { background, Box, Center, Flex, HStack } from "@chakra-ui/react";
 // import ProductImageSlide from "./ProductImageSlide";
 // import { cat_3 } from "../../../../images/IMAGE_IMPORTS";
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {
     ButtonBack,
     ButtonNext,
     CarouselProvider,
+    Dot,
+    Image,
+    ImageWithZoom,
     Slide,
     Slider,
 } from "pure-react-carousel";
@@ -17,90 +21,101 @@ const ProductImage = ({ image, imgURL, images }) => {
     //     setIsImageError(true);
     // };
 
+    // eslint-disable-next-line no-unused-vars
+    const [selectedSlide, setSelectedSlide] = useState(0);
+
     const multipleImages = [{ product_image: image }, ...images];
     console.log("multiple", multipleImages);
     // console.log("Images", images);
     // console.log("Image", image);
 
     return (
-        <Box>
-            <CarouselProvider
-                naturalSlideHeight={50}
-                naturalSlideWidth={50}
-                totalSlides={images.length + 1}
-                visibleSlides={1}
-                step={1}
-                orientation={"horizontal"}
-                interval={3000}
-                isIntrinsicHeight
-                isPlaying
-                infinite
-            >
-                <HStack>
-                    <ButtonBack>
-                        <FaChevronLeft />
-                    </ButtonBack>
-                    <Slider>
-                        {multipleImages.map((image, index) => {
-                            return (
-                                <Slide
-                                    index={index}
-                                    key={index}
+        <CarouselProvider
+            naturalSlideHeight={100}
+            naturalSlideWidth={100}
+            totalSlides={multipleImages.length}
+            visibleSlides={1}
+            step={1}
+            orientation={"horizontal"}
+            interval={3000}
+            isIntrinsicHeight
+            hasMasterSpinner
+            isPlaying
+            infinite
+        >
+            <Box position={"relative"}>
+                <ButtonBack
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "10px",
+                        backgroundColor: "#fff",
+                        padding: "10px",
+                        zIndex: 1,
+                        borderRadius: "50%",
+                        opacity: "0.7",
+                    }}
+                >
+                    <FaChevronLeft />
+                </ButtonBack>
+
+                <Slider>
+                    {multipleImages?.map((image, index) => {
+                        return (
+                            <Slide
+                                index={index}
+                                key={index}
+                            >
+                                <ImageWithZoom
+                                    src={imgURL + image.product_image}
                                     style={{
                                         height: "400px",
-                                        width: "560px",
+                                        width: "100%",
                                     }}
-                                >
-                                    <Image
-                                        src={imgURL + image.product_image}
-                                        alt="Product Images"
-                                        objectFit={"fill"}
-                                        height={"400px"}
-                                        width="100%"
-                                    ></Image>
-                                </Slide>
-                            );
-                        })}
-                    </Slider>
-                    <ButtonNext>
-                        <FaChevronRight />
-                    </ButtonNext>
-                </HStack>
-                {/* <Center my={2}>
-                    {multipleImages?.slice(0, 5)?.map((images, index) => {
-                        return (
-                            <Image
-                                key={index}
-                                h={"50px"}
-                                w={"50px"}
-                                mx={2}
-                                _hover={{
-                                    cursor: "pointer",
-                                }}
-                                src={imgURL + images.product_image}
-                            ></Image>
+                                    isPinchZoomEnabled
+                                    alt="Product Images"
+                                ></ImageWithZoom>
+                            </Slide>
                         );
                     })}
-                </Center> */}
-            </CarouselProvider>
+                </Slider>
+                <ButtonNext
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        right: "5px",
+                        backgroundColor: "#fff",
+                        padding: "10px",
+                        borderRadius: "50%",
+                        opacity: "0.7",
+                    }}
+                >
+                    <FaChevronRight />
+                </ButtonNext>
+            </Box>
 
-            {/* <Image
-                w="100%"
-                h="500px"
-                objectFit={"fill"}
-                alt="product"
-                src={isImageError ? cat_3 : imgURL + image}
-                onError={imageErrorHandler}
-            ></Image>
-            <Flex
-                justifyContent={"center"}
-                bottom={0}
-                width={"100%"}
-                borderWidth={1}
-            >
-                <ProductImageSlide images={images} imgURL={imgURL} />
-            </Flex> */}
-        </Box>
+            <Center mt={2}>
+                {multipleImages?.map((image, index) => {
+                    return (
+                        <Dot
+                            key={index}
+                            slide={index}
+                            style={{
+                                margin: "auto",
+                            }}
+                        >
+                            <Image
+                                style={{
+                                    height: "70px",
+                                    width: "100px",
+                                }}
+                                src={imgURL + image.product_image}
+                            ></Image>
+                        </Dot>
+                    );
+                })}
+            </Center>
+        </CarouselProvider>
     );
 };
 
